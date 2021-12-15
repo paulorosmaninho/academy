@@ -19,25 +19,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4527A0;">
-			<a class="navbar-brand" href="#"> 
-				<img src="img/logo-header-site.png" width="200px"/>
-			</a>
 
-			<!-- Definindo menu de hamburguer -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div id="navMobile" class="navbar-collapse collapse justify-content-end">
-				<a class="btn-nav nav-item nav-link"><i class="fas fa-home"></i> Home</a> 
-				<a class="btn-nav nav-item nav-link"><i class="fas fa-user-graduate"></i> Cadastrar Aluno</a> 
-				<a class="btn-nav nav-item nav-link"><i class="fas fa-search"></i> Pesquisar Aluno</a> 
-				<a class="btn-nav nav-item nav-link btn-danger"><i class="fas fa-times"></i> Sair</a>
-			</div>
-		</nav>
-	</header>
+<div th:replace="fragmentos/fragmentos :: cabecalho"> </div>
 
 	<section class="neo-section" style="background-image: url('img/bg-index.jpg');">
 		<div class="sombra"></div>
@@ -60,11 +43,7 @@
 
 	</section>
 
-	<footer>
-	<div class="rodape">
-	<span>Todos os direitos reservados - 2021 &copy; Paulo Rosmaninho</span>
-	</div>
-	</footer>
+<div th:replace="fragmentos/fragmentos :: rodape"> </div>
 
 	<!-- Importando biblioteca de JavaScript jQuery -->
 	<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
