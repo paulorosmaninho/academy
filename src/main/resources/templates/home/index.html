@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta http-equiv="X-UA-Compatible">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Importando biblioteca de estilos do BootStrap -->
 <link rel="stylesheet" href="webjars/bootstrap/css/bootstrap.min.css">
+
 <title>Projeto de gerenciamento de alunos</title>
-<meta name="author" content="Paulo Rosmaninho"/> 
+<meta name="author" content="Paulo Rosmaninho" />
+
+<!-- Importando arquivo style.css -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Importando kit de fontes awesome -->
+<script src="https://kit.fontawesome.com/006642858d.js"></script>
+
+<!-- Importando kit de fontes do google -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- Importando biblioteca de JavaScript jQuery -->
-<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+	<!-- Importando biblioteca de JavaScript jQuery -->
+	<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- Importando biblioteca de JavaScript BootStrap -->
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Importando biblioteca de JavaScript BootStrap -->
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-<p>Olá mundo Spring</p>
-<h1 th:text="${msg}"></h1>
-<button class="btn btn-primary">Teste</button>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E0FFFF">
 
+			<a class="navbar-brand" href="#"> <img
+				src="img/logo-header-site.png" width="200px"/>
+			</a>
+
+			<!-- Definindo menu de hamburguer -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navMobile">
+				<span class="navbar-toggle-icon"></span>
+			</button>
+
+			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
+				<a class="nav-item nav-link">Home</a> 
+				<a class="nav-item nav-link">Cadastrar Aluno</a> 
+				<a class="nav-item nav-link">Pesquisar Aluno</a> 
+				<a class="nav-item nav-link btn-danger">Sair</a>
+			</div>
+
+		</nav>
+
+	</header>
 
 </body>
 </html>
