@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="X-UA-Compatible">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Importando biblioteca de estilos do BootStrap -->
@@ -20,35 +19,60 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4527A0;">
+			<a class="navbar-brand" href="#"> 
+				<img src="img/logo-header-site.png" width="200px"/>
+			</a>
+
+			<!-- Definindo menu de hamburguer -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navMobile" class="navbar-collapse collapse justify-content-end">
+				<a class="nav-item nav-link">Home</a> 
+				<a class="nav-item nav-link">Cadastrar Aluno</a> 
+				<a class="nav-item nav-link">Pesquisar Aluno</a> 
+				<a class="nav-item nav-link btn-danger">Sair</a>
+			</div>
+		</nav>
+	</header>
+
+	<section class="neo-section" style="background-image: url('img/bg-index.jpg');">
+		<div class="sombra"></div>
+
+		<div class= "center neo-container">
+			<h1 class="texto-centro">Sistema de Gerenciamente de Alunos</h1>
+
+			<div class="botoes">
+				<div class="wm">
+					<h5 class="btn">CADASTRAR ALUNO</h5>
+				</div>
+
+				<div class="wm">
+					<h5 class="btn justify-content-center">PESQUISAR ALUNO</h5>
+				</div>
+				<div class="clear"></div>
+
+			</div>
+		</div>
+
+	</section>
+
+	<footer>
+	<div class="rodape">
+	<span>Todos os direitos reservados - 2021 &copy; Paulo Rosmaninho</span>
+	</div>
+	</footer>
+
 	<!-- Importando biblioteca de JavaScript jQuery -->
 	<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
 
 	<!-- Importando biblioteca de JavaScript BootStrap -->
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E0FFFF">
-
-			<a class="navbar-brand" href="#"> <img
-				src="img/logo-header-site.png" width="200px"/>
-			</a>
-
-			<!-- Definindo menu de hamburguer -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navMobile">
-				<span class="navbar-toggle-icon"></span>
-			</button>
-
-			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
-				<a class="nav-item nav-link">Home</a> 
-				<a class="nav-item nav-link">Cadastrar Aluno</a> 
-				<a class="nav-item nav-link">Pesquisar Aluno</a> 
-				<a class="nav-item nav-link btn-danger">Sair</a>
-			</div>
-
-		</nav>
-
-	</header>
+	
 
 </body>
 </html>
