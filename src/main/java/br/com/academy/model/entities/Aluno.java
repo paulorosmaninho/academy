@@ -21,111 +21,112 @@ import br.com.academy.model.enums.Turno;
 @Entity
 @Table(name = "tb_aluno")
 public class Aluno {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "nm_aluno", length = 80)
-	private String nome;
-	
-	@Column(name = "cd_curso")
-	private Integer curso;
 
 	@Column(name = "cd_matricula", length = 15)
 	private String matricula;
 
-	@Column(name = "ds_status", length = 15)
-	private Status status;
+	@Column(name = "nm_aluno", length = 80)
+	private String nome;
 
-	@Column(name = "ds_turno", length = 15)
-	private Turno turno;
-	
+	@Column(name = "cd_curso")
+	private Integer curso;
+
+	@Column(name = "cd_status")
+	private Integer status;
+
+	@Column(name = "cd_turno")
+	private Integer turno;
+
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ts_inclusao")
 	private Calendar timeStampInclusao;
-	
+
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ts_alteracao")
 	private Calendar timeStampAlteracao;
 
-	
 	public Aluno() {
 	}
 
-	public Aluno(Long id, String nome, Curso curso, String matricula, Status status, Turno turno) {
+	public Aluno(Long id, String matricula, String nome, Curso curso, Status status, Turno turno,
+			Calendar timeStampInclusao, Calendar timeStampAlteracao) {
 		super();
 		this.id = id;
+		this.matricula = matricula;
 		this.nome = nome;
 		setCurso(curso);
-		this.matricula = matricula;
-		this.status = status;
-		this.turno = turno;
+		setStatus(status);
+		setTurno(turno);
 	}
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-	public String getNome() {
-		return nome;
-	}
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-
-	public Curso getCurso() {
-		return Curso.valueOf(curso);
-	}
-
-	public void setCurso(Curso curso) {
-		if(curso != null) {
-			this.curso = curso.getCodigo();
-		}
-	}
-
 
 	public String getMatricula() {
 		return matricula;
 	}
 
-
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Curso getCurso() {
+		if(this.curso != null) {
+			return Curso.valueOf(this.curso);
+		}
+		return null;
+	}
+
+	public void setCurso(Curso curso) {
+		if (curso != null) {
+			this.curso = curso.getCodigo();
+		}
+	}
 
 	public Status getStatus() {
-		return status;
+		if(this.status !=null) {
+			return Status.valueOf(this.status);
+		}
+		return null;
 	}
-
 
 	public void setStatus(Status status) {
-		this.status = status;
+		if (status != null) {
+			this.status = status.getCodigo();
+		}
 	}
-
 
 	public Turno getTurno() {
-		return turno;
+		if(this.turno!=null) {
+			return Turno.valueOf(turno);
+		}
+		return null;
 	}
-
 
 	public void setTurno(Turno turno) {
-		this.turno = turno;
+		if (turno != null) {
+			this.turno = turno.getCodigo();
+		}
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -134,7 +135,6 @@ public class Aluno {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
