@@ -29,7 +29,15 @@ public class AlunoController {
 	public ModelAndView cadastrar(Aluno aluno) {
 		ModelAndView mv = new ModelAndView();
 		alunoService.insert(aluno);
-		mv.setViewName("redirect:/");
+		mv.setViewName("redirect:/alunos-cadastrados");
+		return mv;
+	}
+	
+	@GetMapping(value = "/alunos-cadastrados")
+	public ModelAndView listarAlunos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/list-alunos");
+		mv.addObject("listaAlunos", alunoService.findAll());
 		return mv;
 	}
 

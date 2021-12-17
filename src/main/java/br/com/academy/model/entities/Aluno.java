@@ -89,9 +89,9 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public Curso getCurso() {
+	public String getCurso() {
 		if(this.curso != null) {
-			return Curso.valueOf(this.curso);
+			return Curso.descricaoCurso(this.curso);
 		}
 		return null;
 	}
@@ -102,9 +102,9 @@ public class Aluno {
 		}
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		if(this.status !=null) {
-			return Status.valueOf(this.status);
+			return Status.descricaoStatus(this.status);
 		}
 		return null;
 	}
@@ -115,9 +115,9 @@ public class Aluno {
 		}
 	}
 
-	public Turno getTurno() {
+	public String getTurno() {
 		if(this.turno!=null) {
-			return Turno.valueOf(turno);
+			return Turno.descricaoTurno(turno);
 		}
 		return null;
 	}

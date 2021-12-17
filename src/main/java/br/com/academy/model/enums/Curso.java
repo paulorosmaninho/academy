@@ -38,4 +38,15 @@ public enum Curso {
 
 		throw new IllegalArgumentException("Codigo do curso invalido");
 	}
+
+	public static String descricaoCurso(int codigo) {
+		
+		for(Curso curso : Curso.values()) {
+			if(curso.getCodigo() == codigo) {
+				return curso.getDescricao();
+			}
+		}
+		
+		throw new IllegalArgumentException("Codigo do curso invalido");
+	}
 }

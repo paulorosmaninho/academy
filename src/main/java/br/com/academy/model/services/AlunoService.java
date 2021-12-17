@@ -1,5 +1,7 @@
 package br.com.academy.model.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,10 @@ public class AlunoService {
 	public Aluno insert(Aluno aluno) {
 		return alunoRepository.save(aluno);
 	}
-
+	
+	public List<Aluno> findAll(){
+		List<Aluno> alunos = alunoRepository.findAll();
+		return alunos; 
+	}
+	
 }
