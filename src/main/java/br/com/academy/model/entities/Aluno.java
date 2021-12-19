@@ -89,9 +89,9 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public String getCurso() {
+	public Curso getCurso() {
 		if(this.curso != null) {
-			return Curso.descricaoCurso(this.curso);
+			return Curso.valueOf(this.curso);
 		}
 		return null;
 	}
@@ -102,9 +102,9 @@ public class Aluno {
 		}
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		if(this.status !=null) {
-			return Status.descricaoStatus(this.status);
+			return Status.valueOf(this.status);
 		}
 		return null;
 	}
@@ -115,9 +115,9 @@ public class Aluno {
 		}
 	}
 
-	public String getTurno() {
+	public Turno getTurno() {
 		if(this.turno!=null) {
-			return Turno.descricaoTurno(turno);
+			return Turno.valueOf(turno);
 		}
 		return null;
 	}
@@ -126,6 +126,22 @@ public class Aluno {
 		if (turno != null) {
 			this.turno = turno.getCodigo();
 		}
+	}
+	
+	public Calendar getTimeStampInclusao() {
+		return timeStampInclusao;
+	}
+
+	public void setTimeStampInclusao(Calendar timeStampInclusao) {
+		this.timeStampInclusao = timeStampInclusao;
+	}
+
+	public Calendar getTimeStampAlteracao() {
+		return timeStampAlteracao;
+	}
+
+	public void setTimeStampAlteracao(Calendar timeStampAlteracao) {
+		this.timeStampAlteracao = timeStampAlteracao;
 	}
 
 	@Override

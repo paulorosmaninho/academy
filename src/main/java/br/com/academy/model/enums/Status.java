@@ -35,14 +35,14 @@ public enum Status {
 		throw new IllegalArgumentException("Codigo do status invalido");
 	}
 
-	public static String descricaoStatus(int codigo) {
-		
-		for(Status status : Status.values()) {
-			if(status.getCodigo() == codigo) {
-				return status.getDescricao();
-			}
-		}
-		
-		throw new IllegalArgumentException("Codigo do status invalido");
-	}
+//	public static String descricaoStatus(int codigo) {
+//		
+//		for(Status status : Status.values()) {
+//			if(status.getCodigo() == codigo) {
+//				return status.getDescricao();
+//			}
+//		}
+//		
+//		throw new IllegalArgumentException("Codigo do status invalido");
+//	}
 }

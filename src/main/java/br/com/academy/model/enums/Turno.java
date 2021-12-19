@@ -33,15 +33,4 @@ public enum Turno {
 
 		throw new IllegalArgumentException("Codigo do turno invalido");
 	}
-
-	public static String descricaoTurno(int codigo) {
-		
-		for(Turno turno : Turno.values()) {
-			if(turno.getCodigo() == codigo) {
-				return turno.getDescricao();
-			}
-		}
-		
-		throw new IllegalArgumentException("Codigo do turno invalido");
-	}
 }

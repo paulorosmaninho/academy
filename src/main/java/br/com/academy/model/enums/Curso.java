@@ -29,24 +29,13 @@ public enum Curso {
 	}
 
 	public static Curso valueOf(int codigo) {
-		
+
 		for(Curso curso : Curso.values()) {
 			if(curso.getCodigo() == codigo) {
 				return curso;
 			}
 		}
 
-		throw new IllegalArgumentException("Codigo do curso invalido");
-	}
-
-	public static String descricaoCurso(int codigo) {
-		
-		for(Curso curso : Curso.values()) {
-			if(curso.getCodigo() == codigo) {
-				return curso.getDescricao();
-			}
-		}
-		
 		throw new IllegalArgumentException("Codigo do curso invalido");
 	}
 }
