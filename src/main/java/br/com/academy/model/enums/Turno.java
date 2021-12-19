@@ -2,6 +2,7 @@ package br.com.academy.model.enums;
 
 public enum Turno {
 	
+	NENHUM(0, "Nenhum"),
 	MANHA(1, "Manhã"),
 	TARDE(2, "Tarde"),
 	NOITE(3, "Noite");

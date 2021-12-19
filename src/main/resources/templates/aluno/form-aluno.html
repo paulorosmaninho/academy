@@ -16,7 +16,9 @@
 <script src="https://kit.fontawesome.com/006642858d.js"></script>
 
 <!-- Importando kit de fontes do google -->
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap"
+	rel="stylesheet">
 </head>
 <body>
 
@@ -27,25 +29,32 @@
 		<h4>+ Cadastrar alunos</h4>
 		<hr>
 
-		<form method=post action="/cadastrar" th:object="${aluno}" autocomplete="off">
+		<form method=post action="/cadastrar" th:object="${aluno}"
+			autocomplete="off">
 
 			<!-- Nome -->
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
+					<div class="alert alert-danger" role="alert"
+						th:if="${#fields.hasErrors('nome')}">
+						<label class="validation-message" th:errors="*{nome}"></label>
+					</div>
+
 					<label>Nome do Aluno:</label> 
-					<input class="form-control" placeholder="Nome do aluno" th:field="*{nome}">
+					<input class="form-control"	placeholder="Nome do aluno" th:field="*{nome}">
 				</div>
 			</div>
-			
+
 			<!-- Curso -->
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
-					<label>Selecione o Curso:</label>
-					<select class="form-control" th:field="*{curso}">
-					
-						<option th:each="curso : ${T(br.com.academy.model.enums.Curso).values()}" 
-						th:value="${curso}" th:text="${curso.descricao}"> </option> 
-					
+					<label>Selecione o Curso:</label> <select class="form-control"
+						th:field="*{curso}">
+
+						<option
+							th:each="curso : ${T(br.com.academy.model.enums.Curso).values()}"
+							th:value="${curso}" th:text="${curso.descricao}"></option>
+
 					</select>
 				</div>
 			</div>
@@ -54,9 +63,13 @@
 			<!-- Matricula -->
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
-					<label>Gerar Matricula:</label> 
-					<input class="form-control" th:field="*{matricula}">
-					<button type="button" onclick="GerarMatricula();" class="btnpadrao btn-dark" style="margin-top: 10px">Gerar</button>
+					<div class="alert alert-danger" role="alert"
+						th:if="${#fields.hasErrors('matricula')}">
+						<label class="validation-message" th:errors="*{matricula}"></label>
+					</div>
+					<label>Gerar Matricula:</label> <input class="form-control" th:field="*{matricula}">
+					<button type="button" onclick="GerarMatricula();"
+						class="btnpadrao btn-dark" style="margin-top: 10px">Gerar</button>
 				</div>
 			</div>
 
@@ -64,12 +77,13 @@
 			<!-- Status -->
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
-					<label>Selecione o Status:</label>
-					<select class="form-control" th:field="*{status}">
-					
-						<option th:each="status : ${T(br.com.academy.model.enums.Status).values()}" 
-						th:value="${status}" th:text="${status.descricao}"> </option> 
-					
+					<label>Selecione o Status:</label> <select class="form-control"
+						th:field="*{status}">
+
+						<option
+							th:each="status : ${T(br.com.academy.model.enums.Status).values()}"
+							th:value="${status}" th:text="${status.descricao}"></option>
+
 					</select>
 				</div>
 			</div>
@@ -77,20 +91,21 @@
 			<!-- Turno -->
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
-					<label>Selecione o Turno:</label>
-					<select class="form-control" th:field="*{turno}">
-					
-						<option th:each="turno : ${T(br.com.academy.model.enums.Turno).values()}" 
-						th:value="${turno}" th:text="${turno.descricao}"> </option> 
-					
+					<label>Selecione o Turno:</label> <select class="form-control"
+						th:field="*{turno}">
+
+						<option
+							th:each="turno : ${T(br.com.academy.model.enums.Turno).values()}"
+							th:value="${turno}" th:text="${turno.descricao}"></option>
+
 					</select>
 				</div>
 			</div>
 
 			<div class="row" style="margin-top: 10px">
 				<button type="submit" class="btnpadrao btn-success offset-md-5">Salvar</button>
-				&nbsp&nbsp&nbsp&nbsp
-				<a class="btnpadrao btn-outline-danger" style= "text-align: center; color: black; text-decoration: none;" >Voltar</a>
+				&nbsp&nbsp&nbsp&nbsp <a class="btnpadrao btn-outline-danger"
+					style="text-align: center; color: black; text-decoration: none;">Voltar</a>
 			</div>
 
 

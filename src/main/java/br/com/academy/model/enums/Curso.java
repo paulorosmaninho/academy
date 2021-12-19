@@ -1,6 +1,7 @@
 package br.com.academy.model.enums;
 
 public enum Curso {
+	NENHUM(0, "Nenhum"),
 	ADMINISTRACAO(1, "Administração"),
 	DIREITO(2, "Direito"),
 	HISTORIA(3, "História"),

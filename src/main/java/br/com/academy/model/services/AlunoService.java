@@ -15,11 +15,6 @@ public class AlunoService {
 	@Autowired
 	AlunoRepository alunoRepository;
 	
-	public Aluno save(Aluno aluno) {
-		return alunoRepository.save(aluno);
-	}
-	
-	
 	public void insert(Aluno aluno) {
 		  	alunoRepository.insert(
 				aluno.getMatricula(), 
@@ -50,6 +45,10 @@ public class AlunoService {
 				alunoAtualizado.getCurso().getCodigo(), 
 				alunoAtualizado.getStatus().getCodigo(), 
 				alunoAtualizado.getTurno().getCodigo());
+	}
+	
+	public void excluir(Long id) {
+		alunoRepository.deleteById(id);
 	}
 
 }

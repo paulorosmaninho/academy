@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,8 +29,10 @@ public class Aluno {
 	private Long id;
 
 	@Column(name = "cd_matricula", length = 15)
+	@NotBlank(message = "A matrícula não foi preenchida. Por favor clique no botão Gerar.")
 	private String matricula;
 
+	@Size(min = 2, max = 80, message = "O nome do aluno deve ter no mínimo 2 caracteres.")
 	@Column(name = "nm_aluno", length = 80)
 	private String nome;
 

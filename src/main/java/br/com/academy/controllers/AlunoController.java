@@ -1,7 +1,10 @@
 package br.com.academy.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,10 +30,15 @@ public class AlunoController {
 	}
 
 	@PostMapping(value = "/cadastrar")
-	public ModelAndView cadastrar(Aluno aluno) {
+	public ModelAndView cadastrar(@Valid Aluno aluno, BindingResult br) {
 		ModelAndView mv = new ModelAndView();
-		alunoService.insert(aluno);
-		mv.setViewName("redirect:/alunos-cadastrados");
+		if(br.hasErrors()) {
+			mv.setViewName("aluno/form-aluno");
+			mv.addObject(aluno);
+		}else {
+			alunoService.insert(aluno);
+			mv.setViewName("redirect:/alunos-cadastrados");
+		}
 		return mv;
 	}
 
@@ -55,6 +63,14 @@ public class AlunoController {
 	public ModelAndView alterar(Aluno aluno) {
 		ModelAndView mv = new ModelAndView();
 		alunoService.update(aluno);
+		mv.setViewName("redirect:/alunos-cadastrados");
+		return mv;
+	}
+
+	@GetMapping(value = "/excluir/{id}")
+	public ModelAndView excluir(@PathVariable("id") Long id) {
+		ModelAndView mv = new ModelAndView();
+		alunoService.excluir(id);
 		mv.setViewName("redirect:/alunos-cadastrados");
 		return mv;
 	}

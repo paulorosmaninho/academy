@@ -2,6 +2,7 @@ package br.com.academy.model.enums;
 
 public enum Status {
 	
+	NENHUM(0, "Nenhum"),
 	ATIVO(1, "Ativo"),
 	INATIVO(2, "Inativo"),
 	TRANCADO(3, "Trancado"),
