@@ -60,9 +60,15 @@
 			<!-- Matricula -->
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
-					<label>Gerar Matricula:</label> 
-					<input readonly="readonly" class="form-control" th:field="*{matricula}">
-					<button type="button" onclick="SubstituirMatricula();" class="btnpadrao btn-dark" style="margin-top: 10px">Gerar</button>
+					<div class="alert alert-danger" role="alert"
+						th:if="${#fields.hasErrors('matricula')}">
+						<label class="validation-message" th:errors="*{matricula}"></label>
+					</div>
+
+					<label>Gerar Matricula:</label> <input readonly="readonly"
+						class="form-control" th:field="*{matricula}">
+					<button type="button" onclick="SubstituirMatricula();"
+						class="btnpadrao btn-dark" style="margin-top: 10px">Gerar</button>
 				</div>
 			</div>
 

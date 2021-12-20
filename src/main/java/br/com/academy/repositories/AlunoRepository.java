@@ -1,5 +1,7 @@
 package br.com.academy.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -38,4 +40,23 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 			@Param("curso") Integer curso,
 			@Param("status") Integer status,
 			@Param("turno") Integer turno);
+	
+	
+	@Query(value = "SELECT a FROM Aluno a WHERE a.status=1")
+	public List<Aluno> findByStatusAtivo();
+
+	@Query(value = "SELECT a FROM Aluno a WHERE a.status=2")
+	public List<Aluno> findByStatusInativo();
+	
+	@Query(value = "SELECT a FROM Aluno a WHERE a.status=3")
+	public List<Aluno> findByStatusTrancado();
+	
+	@Query(value = "SELECT a FROM Aluno a WHERE a.status=4")
+	public List<Aluno> findByStatusCancelado();
+
+	@Query(value = "SELECT a FROM Aluno a WHERE a.status=0")
+	public List<Aluno> findByStatusIndefinido();
+
+	@Query(value = "SELECT a FROM Aluno a WHERE a.nome LIKE lower(concat('%',:nome,'%'))")
+	public List<Aluno> findByNome();
 }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Importando biblioteca de estilos do BootStrap -->
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+
+<title>Pesquisar Alunos</title>
+<meta name="author" content="Paulo Rosmaninho" />
+
+<!-- Importando arquivo style.css -->
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Importando kit de fontes awesome -->
+<script src="https://kit.fontawesome.com/006642858d.js"></script>
+
+<!-- Importando kit de fontes do google -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap"
+	rel="stylesheet">
+</head>
+<body>
+	<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+
+	<div class="container" style="margin-top: 50px;">
+
+		<h4>Pesquisar Alunos</h4>
+		<hr>
+		<br>
+		<form method="post" action="/alunos-por-nome" th:object="${nome}" autocomplete="off">
+			<div class="input-group col-6 off-set-3">
+				<input class="form-control"
+					placeholder="Pesquisar pelo nome do aluno.">
+				<div class="input-group-append">
+					<button type="submit" class="btncards btn-outline-secondary">Pesquisar</button>
+				</div>
+			</div>
+		</form>
+		<hr>
+		<div class="row" align="center">
+		<!-- Alunos Ativos -->
+			<div class="card" style="width: 288px">
+				<img class="card-img-top" src="/img/alunos-ativos.jpg" />
+				<div class="card-body">
+					<h5 class="card-title">Alunos Ativos no Sistema</h5>
+					<p class="card-text">Pesquisar todos os alunos ativos no
+						sistema.</p>
+					<a th:href="@{/alunos-ativos}" class="btncards btn-outline-primary">Pesquisar</a>
+				</div>
+			</div>
+
+		<!-- Alunos Inativos -->
+			<div class="card ml-3" style="width: 288px">
+				<img class="card-img-top" src="/img/alunos-inativos.jpg" />
+				<div class="card-body">
+					<h5 class="card-title">Alunos Inativos no Sistema</h5>
+					<p class="card-text">Pesquisar todos os alunos inativos no
+						sistema.</p>
+					<a th:href="@{/alunos-inativos}" class="btncards btn-outline-primary">Pesquisar</a>
+				</div>
+			</div>
+
+		<!-- Alunos Cancelados -->
+			<div class="card ml-3" style="width: 288px">
+				<img class="card-img-top" src="/img/alunos-cancelados.jpg" />
+				<div class="card-body">
+					<h5 class="card-title">Alunos Cancelados no Sistema</h5>
+					<p class="card-text">Pesquisar todos os alunos cancelados no
+						sistema.</p>
+					<a th:href="@{/alunos-cancelados}" class="btncards btn-outline-primary">Pesquisar</a>
+				</div>
+			</div>
+
+		<!-- Alunos Trancados -->
+			<div class="card ml-3" style="width: 288px">
+				<img class="card-img-top" src="/img/alunos-trancados.jpg" />
+				<div class="card-body">
+					<h5 class="card-title">Alunos Trancados no Sistema</h5>
+					<p class="card-text">Pesquisar todos os alunos trancados no
+						sistema.</p>
+					<a th:href="@{/alunos-trancados}" class="btncards btn-outline-primary">Pesquisar</a>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div th:replace="fragmentos/fragmentos :: rodape"></div>
+
+		<!-- Importando biblioteca de JavaScript local -->
+		<script src="/js/main.js"></script>
+
+		<!-- Importando biblioteca de JavaScript jQuery -->
+		<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+
+		<!-- Importando biblioteca de JavaScript BootStrap -->
+		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+	</div>
+
+</body>
+</html>

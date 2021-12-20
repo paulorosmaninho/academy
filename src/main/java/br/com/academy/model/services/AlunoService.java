@@ -50,5 +50,29 @@ public class AlunoService {
 	public void excluir(Long id) {
 		alunoRepository.deleteById(id);
 	}
+	
+	public List<Aluno> findByStatusAtivo(){
+		return alunoRepository.findByStatusAtivo();
+	}
+
+	public List<Aluno> findByStatusInativo(){
+		return alunoRepository.findByStatusInativo();
+	}
+	
+	public List<Aluno> findByStatusTrancado(){
+		return alunoRepository.findByStatusTrancado();
+	}
+	
+	public List<Aluno> findByStatusCancelado(){
+		return alunoRepository.findByStatusCancelado();
+	}
+	
+	public List<Aluno> findByStatusIndefinido(){
+		return alunoRepository.findByStatusIndefinido();
+	}
+
+	public List<Aluno> findByNome(){
+		return alunoRepository.findByNome();
+	}
 
 }

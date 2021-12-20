@@ -60,10 +60,17 @@ public class AlunoController {
 	}
 
 	@PostMapping(value = "/alterar")
-	public ModelAndView alterar(Aluno aluno) {
+	public ModelAndView alterar(@Valid Aluno aluno, BindingResult br) {
 		ModelAndView mv = new ModelAndView();
-		alunoService.update(aluno);
-		mv.setViewName("redirect:/alunos-cadastrados");
+		if(br.hasErrors()) {
+			mv.setViewName("aluno/form-alterar-aluno");
+			mv.addObject(aluno);
+		}
+		else
+		{
+			alunoService.update(aluno);
+			mv.setViewName("redirect:/alunos-cadastrados");
+		}
 		return mv;
 	}
 
@@ -72,6 +79,63 @@ public class AlunoController {
 		ModelAndView mv = new ModelAndView();
 		alunoService.excluir(id);
 		mv.setViewName("redirect:/alunos-cadastrados");
+		return mv;
+	}
+	
+	@GetMapping(value = "/filtro-alunos")
+	public ModelAndView filtroAlunos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/filtro-alunos");
+		return mv;
+	}
+
+	@GetMapping(value = "/alunos-ativos")
+	public ModelAndView listarAlunosAtivos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/list-alunos-ativos");
+		mv.addObject("listaAlunosAtivos", alunoService.findByStatusAtivo());
+		return mv;
+	}
+	
+	@GetMapping(value = "/alunos-inativos")
+	public ModelAndView listarAlunosInativos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/list-alunos-inativos");
+		mv.addObject("listaAlunosInativos", alunoService.findByStatusInativo());
+		return mv;
+	}
+	
+	@GetMapping(value = "/alunos-trancados")
+	public ModelAndView listarAlunosTrancados() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/list-alunos-trancados");
+		mv.addObject("listaAlunosTrancados", alunoService.findByStatusTrancado());
+		return mv;
+	}
+	
+	@GetMapping(value = "/alunos-cancelados")
+	public ModelAndView listarAlunosCancelados() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/list-alunos-cancelados");
+		mv.addObject("listaAlunosCancelados", alunoService.findByStatusCancelado());
+		return mv;
+	}
+
+	@GetMapping(value = "/alunos-indefinidos")
+	public ModelAndView listarAlunosIndefinidos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/list-alunos-indefinidos");
+		mv.addObject("listaAlunosIndefinidos", alunoService.findByStatusIndefinido());
+		return mv;
+	}
+
+	@PostMapping(value = "/alunos-por-nome")
+	public ModelAndView listarAlunosPorNome(String nome) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("aluno/filtro-alunos");
+		mv.addObject(nome);
+		alunoService.findByNome();
+		mv.setViewName("redirect:/list-alunos-por-nome");
 		return mv;
 	}
 
