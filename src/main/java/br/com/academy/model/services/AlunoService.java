@@ -71,8 +71,12 @@ public class AlunoService {
 		return alunoRepository.findByStatusIndefinido();
 	}
 
-	public List<Aluno> findByNome(){
-		return alunoRepository.findByNome();
+	public List<Aluno> findByNome(String nome){
+		if(nome == null || nome.isBlank() || nome.isEmpty()) {
+			return alunoRepository.findAll();
+		}else {
+			return alunoRepository.findByNome(nome);
+		}
 	}
 
 }

@@ -57,6 +57,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 	@Query(value = "SELECT a FROM Aluno a WHERE a.status=0")
 	public List<Aluno> findByStatusIndefinido();
 
-	@Query(value = "SELECT a FROM Aluno a WHERE a.nome LIKE lower(concat('%',:nome,'%'))")
-	public List<Aluno> findByNome();
+	@Query(value = "SELECT a FROM Aluno a WHERE lower(a.nome) "
+			+ "LIKE lower(concat('%',:nome,'%')) "
+			+ "ORDER BY a.nome")
+	public List<Aluno> findByNome(String nome);
 }

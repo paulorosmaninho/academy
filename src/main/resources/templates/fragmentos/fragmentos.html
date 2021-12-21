@@ -23,7 +23,7 @@
 <!-- Cabeçalho -->
 	<header th:fragment="cabecalho">
 		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#4527A0;">
-			<a class="navbar-brand" th:href="@{/}"> 
+			<a class="navbar-brand" th:href="@{/index}"> 
 				<img src="/img/logo-header-site.png" width="200px"/>
 			</a>
 
@@ -33,8 +33,8 @@
 			</button>
 
 			<div id="navMobile" class="navbar-collapse collapse justify-content-end">
-				<a class="btn-nav nav-item nav-link" th:href="@{/}"><i class="fas fa-home"></i> Home</a> 
-				<a class="btn-nav nav-item nav-link" th:href="@{/cadastrar}"><i class="fas fa-user-graduate"></i> Cadastrar Aluno</a> 
+				<a class="btn-nav nav-item nav-link" th:href="@{/index}"><i class="fas fa-home"></i> Home</a> 
+				<a class="btn-nav nav-item nav-link" th:href="@{/cadastrarAluno}"><i class="fas fa-user-graduate"></i> Cadastrar Aluno</a> 
 				<a class="btn-nav nav-item nav-link" th:href="@{/filtro-alunos}"><i class="fas fa-search"></i> Pesquisar Aluno</a> 
 				<a class="btn-nav nav-item nav-link btn-danger"><i class="fas fa-times"></i> Sair</a>
 			</div>

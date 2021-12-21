@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.academy.model.entities.Aluno;
@@ -19,18 +20,17 @@ public class AlunoController {
 	@Autowired
 	AlunoService alunoService;
 
-	@GetMapping(value = "/cadastrar")
-	public ModelAndView consultar(Aluno aluno) {
-
+	//Abre a página e instancia o objeto para receber os dados 
+	@GetMapping(value = "/cadastrarAluno")
+	public ModelAndView consultarAluno(Aluno aluno) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("aluno/form-aluno");
 		mv.addObject("aluno", new Aluno());
-
 		return mv;
 	}
 
-	@PostMapping(value = "/cadastrar")
-	public ModelAndView cadastrar(@Valid Aluno aluno, BindingResult br) {
+	@PostMapping(value = "/cadastrarAluno")
+	public ModelAndView cadastrarAluno(@Valid Aluno aluno, BindingResult br) {
 		ModelAndView mv = new ModelAndView();
 		if(br.hasErrors()) {
 			mv.setViewName("aluno/form-aluno");
@@ -50,8 +50,8 @@ public class AlunoController {
 		return mv;
 	}
 
-	@GetMapping(value = "/alterar/{id}")
-	public ModelAndView alterar(@PathVariable("id") Long id) {
+	@GetMapping(value = "/alterarAluno/{id}")
+	public ModelAndView alterarAluno(@PathVariable("id") Long id) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("aluno/form-alterar-aluno");
 		Aluno aluno = alunoService.findById(id);
@@ -59,7 +59,7 @@ public class AlunoController {
 		return mv;
 	}
 
-	@PostMapping(value = "/alterar")
+	@PostMapping(value = "/alterarAluno")
 	public ModelAndView alterar(@Valid Aluno aluno, BindingResult br) {
 		ModelAndView mv = new ModelAndView();
 		if(br.hasErrors()) {
@@ -74,8 +74,8 @@ public class AlunoController {
 		return mv;
 	}
 
-	@GetMapping(value = "/excluir/{id}")
-	public ModelAndView excluir(@PathVariable("id") Long id) {
+	@GetMapping(value = "/excluirAluno/{id}")
+	public ModelAndView excluirAluno(@PathVariable("id") Long id) {
 		ModelAndView mv = new ModelAndView();
 		alunoService.excluir(id);
 		mv.setViewName("redirect:/alunos-cadastrados");
@@ -130,12 +130,11 @@ public class AlunoController {
 	}
 
 	@PostMapping(value = "/alunos-por-nome")
-	public ModelAndView listarAlunosPorNome(String nome) {
+	public ModelAndView listarAlunosPorNome(@RequestParam(required = false) String nome) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("aluno/filtro-alunos");
-		mv.addObject(nome);
-		alunoService.findByNome();
-		mv.setViewName("redirect:/list-alunos-por-nome");
+//		mv.setViewName("aluno/filtro-alunos");
+		mv.setViewName("aluno/list-alunos-por-nome");
+		mv.addObject("listaAlunosPorNome", alunoService.findByNome(nome));
 		return mv;
 	}
 

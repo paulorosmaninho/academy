@@ -27,7 +27,7 @@
 		<h4>Alterar aluno</h4>
 		<hr>
 
-		<form method=post action="/alterar" th:object="${aluno}" autocomplete="off">
+		<form method=post action="/alterarAluno" th:object="${aluno}" autocomplete="off">
 		<input type="hidden" th:field="*{id}">
 
 			<!-- Nome -->
@@ -115,6 +115,7 @@
 			</div>
 
 			<div class="row" style="margin-top: 10px">
+				<!-- Salvar Aluno -->
 				<button type="submit" class="btnpadrao btn-success offset-md-5">Salvar</button>
 				&nbsp&nbsp&nbsp&nbsp
 				<a class="btnpadrao btn-outline-danger" style= "text-align: center; color: black; text-decoration: none;" >Voltar</a>

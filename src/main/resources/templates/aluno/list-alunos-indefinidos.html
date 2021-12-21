@@ -47,11 +47,11 @@
 					<td th:text="${aluno.status.descricao}"></td>
 					<td th:text="${aluno.turno.descricao}"></td>
 					<td align="center">
-						<a data-toggle="tooltip" title="Editar" th:href="@{alterar/{id}(id=${aluno.id})}">
+						<a data-toggle="tooltip" title="Editar" th:href="@{alterarAluno/{id}(id=${aluno.id})}">
 							<i class="fas fa-edit"></i></a>
 					</td>
 					<td align="center">
-						<a data-toggle="tooltip" title="Excluir" th:href="@{excluir/{id}(id=${aluno.id})}">
+						<a data-toggle="tooltip" title="Excluir" th:href="@{excluirAluno/{id}(id=${aluno.id})}">
 							<i class="fas fa-times" style="color:red"></i></a>
 					</td>
 				</tr>

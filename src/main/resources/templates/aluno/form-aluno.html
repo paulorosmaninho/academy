@@ -29,7 +29,7 @@
 		<h4>+ Cadastrar alunos</h4>
 		<hr>
 
-		<form method=post action="/cadastrar" th:object="${aluno}"
+		<form method=post action="/cadastrarAluno" th:object="${aluno}"
 			autocomplete="off">
 
 			<!-- Nome -->
@@ -41,7 +41,7 @@
 					</div>
 
 					<label>Nome do Aluno:</label> 
-					<input class="form-control"	placeholder="Nome do aluno" th:field="*{nome}">
+					<input type="text" name="nome" class="form-control"	placeholder="Nome do aluno" th:field="*{nome}">
 				</div>
 			</div>
 
