@@ -32,7 +32,7 @@ public class Usuario {
 	@Column(name = "nm_email")
 	private String email;
 
-	@Column(name = "cd_senha", length = 15)
+	@Column(name = "cd_senha")
 	private String codigoSenha;
 	
 	@CreationTimestamp

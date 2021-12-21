@@ -37,7 +37,7 @@ public class UsuarioController {
 
 	
 	@PostMapping(value = "/cadastrarUsuario")
-	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult br) {
+	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult br) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		if(br.hasErrors()) {
 			mv.setViewName("login/form-usuario");
