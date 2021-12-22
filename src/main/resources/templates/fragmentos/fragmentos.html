@@ -32,17 +32,20 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div id="navMobile" class="navbar-collapse collapse justify-content-end">
+			<div id="navMobile" class="navbar-collapse collapse justify-content-center">
 				<a class="btn-nav nav-item nav-link" th:href="@{/index}"><i class="fas fa-home"></i> Home</a> 
 				<a class="btn-nav nav-item nav-link" th:href="@{/cadastrarAluno}"><i class="fas fa-user-graduate"></i> Cadastrar Aluno</a> 
-				<a class="btn-nav nav-item nav-link" th:href="@{/filtro-alunos}"><i class="fas fa-search"></i> Pesquisar Aluno</a> 
-				<a class="btn-nav nav-item nav-link btn-danger"><i class="fas fa-times"></i> Sair</a>
+				<a class="btn-nav nav-item nav-link" th:href="@{/filtro-alunos}"><i class="fas fa-search"></i> Pesquisar Aluno</a>
+				<form method="post" id="form-sair" action="/logout">
+					<a href="javascript:{}" onclick="document.getElementById('form-sair').submit();" class="btn-nav nav-item nav-link"><i class="fas fa-times"></i> Sair</a>
+				</form>
+				<span class="nav-item"><strong>&nbsp | &nbsp Usuário:&nbsp</strong></span><span class="nav-item" th:text= "${session.usuarioLogado.codigoUsuario}"></span>
 			</div>
 		</nav>
 	</header>
 
 <!-- Rodapé -->
-	<footer th:fragment="rodape">>
+	<footer th:fragment="rodape">
 	<div class="rodape">
 	<span>Todos os direitos reservados - 2021 &copy; Paulo Rosmaninho</span>
 	</div>

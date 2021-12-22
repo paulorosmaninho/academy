@@ -17,5 +17,4 @@ function SubstituirMatricula() {
 	else {
 		GerarMatricula();
 	}
-
 }

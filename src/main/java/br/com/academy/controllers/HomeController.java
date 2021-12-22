@@ -9,12 +9,12 @@ import br.com.academy.model.entities.Aluno;
 @Controller
 public class HomeController {
 	
-//	@GetMapping(value = "/index")
-//	public ModelAndView index() {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("home/index");
-//		mv.addObject("aluno",new Aluno());
-//		return mv;
-//	}
+	@GetMapping(value = "/index")
+	public ModelAndView index() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home/index");
+		mv.addObject("aluno",new Aluno());
+		return mv;
+	}
 
 }

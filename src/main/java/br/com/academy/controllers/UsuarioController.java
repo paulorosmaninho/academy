@@ -36,6 +36,12 @@ public class UsuarioController {
 		return mv;
 	}
 	
+	@PostMapping(value = "/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		return login();
+	}
+
 	//Abre a página e instancia o objeto para receber os dados 
 	@GetMapping(value = "/cadastrarUsuario")
 	public ModelAndView cadastrarUsuario(Usuario usuario) {
@@ -45,7 +51,6 @@ public class UsuarioController {
 		return mv;
 	}
 
-	
 	@PostMapping(value = "/cadastrarUsuario")
 	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult br) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -59,6 +64,5 @@ public class UsuarioController {
 		}
 		return mv;
 	}
-	
 
 }
