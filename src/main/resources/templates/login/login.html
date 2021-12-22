@@ -22,13 +22,13 @@
 					<h2>Controle de Acesso</h2>
 					<p>Insira suas credenciais para fazer o login no sistema</p>
 				</div>
-				<form method="post">
+				<form method="post" action="/login" autocomplete="off" th:object="${usuario}">
 					<div class="form-group">
-						<input type=text name="usuario" class="form-control" placeholder="Usuário">
+						<input type=text name="codigoUsuario" class="form-control" placeholder="Usuário">
 					</div>
 
 					<div class="form-group">
-						<input type=password name="senha" class="form-control" placeholder="Senha">
+						<input type=password name="codigoSenha" class="form-control" placeholder="Senha">
 					</div>
 					
 					<div class="cadastro">

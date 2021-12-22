@@ -132,7 +132,6 @@ public class AlunoController {
 	@PostMapping(value = "/alunos-por-nome")
 	public ModelAndView listarAlunosPorNome(@RequestParam(required = false) String nome) {
 		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("aluno/filtro-alunos");
 		mv.setViewName("aluno/list-alunos-por-nome");
 		mv.addObject("listaAlunosPorNome", alunoService.findByNome(nome));
 		return mv;

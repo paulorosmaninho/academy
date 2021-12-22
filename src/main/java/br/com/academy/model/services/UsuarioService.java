@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.academy.model.entities.Usuario;
 import br.com.academy.model.services.exceptions.CriptoExistsException;
 import br.com.academy.model.services.exceptions.EmailExistsException;
+import br.com.academy.model.services.exceptions.LoginExistsException;
 import br.com.academy.repositories.UsuarioRepository;
 import br.com.util.Util;
 
@@ -24,17 +25,36 @@ public class UsuarioService {
 				
 				throw new EmailExistsException("Este e-mail já está cadastrado: " + usuario.getEmail());
 			}
+			
 			//Criptografa a senha
 			usuario.setCodigoSenha(Util.md5(usuario.getCodigoSenha()));
 
-			//Salva o usuario na base
-			usuarioRepository.save(usuario);
-			
 		}catch(NoSuchAlgorithmException e) {
 			throw new CriptoExistsException("Ocorreu um erro na criptografia da senha.");
 		}
 		
+		//Salva o usuario na base
 		return usuarioRepository.save(usuario);
+	}
+	
+	public Usuario validarLogin(String codigoUsuario, String codigoSenha) throws Exception{
+		
+		Usuario usuario = null;
+		String senhaCriptografada = null;
+		
+		try {
+			senhaCriptografada = Util.md5(codigoSenha);
+		} catch (NoSuchAlgorithmException e) {
+			throw new CriptoExistsException("Ocorreu um erro na criptografia da senha.");
+		}
+		
+		usuario = usuarioRepository.findByLogin(codigoUsuario, senhaCriptografada);
+		
+		if(usuario == null) {
+			throw new LoginExistsException("Usuário e ou senha incorretos.");
+		}
+		
+		return usuario;
 	}
 	
 	

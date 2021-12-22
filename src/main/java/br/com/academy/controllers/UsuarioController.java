@@ -1,5 +1,6 @@
 package br.com.academy.controllers;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,20 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
-	
-	@GetMapping("/")
+	@GetMapping(value = "/")
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login/login");
+		return mv;
+	}
+	
+	
+	@PostMapping(value = "/login")
+	public ModelAndView login(String codigoUsuario, String codigoSenha, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		Usuario usuario = usuarioService.validarLogin(codigoUsuario, codigoSenha);
+		session.setAttribute("usuarioLogado", usuario);
+		mv.setViewName("home/index");
 		return mv;
 	}
 	
