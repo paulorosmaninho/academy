@@ -39,7 +39,7 @@
 				<form method="post" id="form-sair" action="/logout">
 					<a href="javascript:{}" onclick="document.getElementById('form-sair').submit();" class="btn-nav nav-item nav-link"><i class="fas fa-times"></i> Sair</a>
 				</form>
-				<span class="nav-item"><strong>&nbsp | &nbsp Usuário:&nbsp</strong></span><span class="nav-item" th:text= "${session.usuarioLogado.codigoUsuario}"></span>
+				<span class="nav-item"><strong>&nbsp | &nbsp Usuário:&nbsp</strong></span><span class="nav-item" th:text= "${session.usuarioLogado.nome}"></span>
 			</div>
 		</nav>
 	</header>

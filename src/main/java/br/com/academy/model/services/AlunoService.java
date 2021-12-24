@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.academy.model.entities.Aluno;
+import br.com.academy.model.entities.Usuario;
 import br.com.academy.repositories.AlunoRepository;
 
 @Service
@@ -15,13 +16,14 @@ public class AlunoService {
 	@Autowired
 	AlunoRepository alunoRepository;
 	
-	public void insert(Aluno aluno) {
+	public void insert(Aluno aluno, Usuario usuarioLogado) {
 		  	alunoRepository.insert(
 				aluno.getMatricula(), 
 				aluno.getNome(), 
 				aluno.getCurso().getCodigo(), 
 				aluno.getStatus().getCodigo(), 
-				aluno.getTurno().getCodigo()); 
+				aluno.getTurno().getCodigo(),
+				usuarioLogado.getId()); 
 	}
 
 	public List<Aluno> findAll(){
@@ -37,14 +39,15 @@ public class AlunoService {
 	}
 	
 	
-	public void update(Aluno alunoAtualizado) {
+	public void update(Aluno alunoAtualizado, Usuario usuarioLogado) {
 		alunoRepository.update(
 				alunoAtualizado.getId(),
 				alunoAtualizado.getMatricula(), 
 				alunoAtualizado.getNome(), 
 				alunoAtualizado.getCurso().getCodigo(), 
 				alunoAtualizado.getStatus().getCodigo(), 
-				alunoAtualizado.getTurno().getCodigo());
+				alunoAtualizado.getTurno().getCodigo(),
+				usuarioLogado.getId());
 	}
 	
 	public void excluir(Long id) {

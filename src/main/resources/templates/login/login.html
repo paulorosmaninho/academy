@@ -23,8 +23,13 @@
 					<p>Insira suas credenciais para fazer o login no sistema</p>
 				</div>
 				<form method="post" action="/login" autocomplete="off" th:object="${usuario}">
+					
+					<div class="alert alert-danger" role="alert" th:if="${errMsg}">
+						<strong th:text="${errMsg}"></strong>
+					</div>
+					
 					<div class="form-group">
-						<input type=text name="codigoUsuario" class="form-control" placeholder="Usuário">
+						<input type=text name="email" class="form-control" placeholder="E-mail">
 					</div>
 
 					<div class="form-group">
@@ -35,7 +40,7 @@
 						<p>Não tem cadastro? <a th:href="@{cadastrarUsuario}">Clique aqui.</a></p>
 					</div>
 					
-					<button type="submit" class="btn btn-primary">Entrar</button>
+					<button type="submit" class="btn btn-primary btn-lg">Entrar</button>
 
 				</form>
 			</div>

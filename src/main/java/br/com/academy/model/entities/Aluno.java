@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +28,7 @@ public class Aluno {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_aluno")
 	private Long id;
 
 	@Column(name = "cd_matricula", length = 15)
@@ -45,6 +48,10 @@ public class Aluno {
 	@Column(name = "cd_turno")
 	private Integer turno;
 
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+	
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ts_inclusao")
@@ -146,6 +153,14 @@ public class Aluno {
 
 	public void setTimeStampAlteracao(Calendar timeStampAlteracao) {
 		this.timeStampAlteracao = timeStampAlteracao;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

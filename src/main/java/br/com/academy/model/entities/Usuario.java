@@ -1,12 +1,15 @@
 package br.com.academy.model.entities;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,11 +25,16 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_usuario")
 	private Long id;
 	
-	@Column(name = "cd_usuario", length = 15)
-	@Size(min = 4, max = 15, message = "O código do usuário deve conter no mínimo 3 e máximo 15 caracteres.")
-	private String codigoUsuario;
+	@Column(name = "nm_nome", length = 80)
+	@Size(min = 2, max = 80, message = "O nome do usuário deve conter no mínimo 2 e máximo 80 caracteres.")
+	private String nome;
+
+	@Column(name = "nm_sobrenome", length = 80)
+	@Size(min = 2, max = 80, message = "O sobrenome do usuário deve conter no mínimo 2 e máximo 80 caracteres.")
+	private String sobrenome;
 
 	@Email
 	@Column(name = "nm_email")
@@ -34,6 +42,9 @@ public class Usuario {
 
 	@Column(name = "cd_senha")
 	private String codigoSenha;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Aluno> alunos = new ArrayList<>();
 	
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -49,13 +60,16 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String codigoUsuario, String email, String codigoSenha) {
+
+	public Usuario(Long id, String nome, String sobrenome, String email, String codigoSenha) {
 		super();
 		this.id = id;
-		this.codigoUsuario = codigoUsuario;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.email = email;
 		this.codigoSenha = codigoSenha;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -65,12 +79,20 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getCodigoUsuario() {
-		return codigoUsuario;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setCodigoUsuario(String codigoUsuario) {
-		this.codigoUsuario = codigoUsuario;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 
 	public String getEmail() {
@@ -89,6 +111,10 @@ public class Usuario {
 		this.codigoSenha = codigoSenha;
 	}
 	
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
 	public Calendar getTimeStampInclusao() {
 		return timeStampInclusao;
 	}
@@ -121,7 +147,4 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
-	
-
 }

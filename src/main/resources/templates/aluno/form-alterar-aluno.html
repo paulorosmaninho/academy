@@ -22,7 +22,7 @@
 
 	<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
 
-	<div class="container" style="margin-top: 50px;">
+	<div class="container" style="margin-top: 50px; margin-bottom: 10px;">
 
 		<h4>Alterar aluno</h4>
 		<hr>
@@ -47,7 +47,7 @@
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
 					<label>Selecione o Curso:</label>
-					<select class="form-control" th:field="*{curso}">
+					<select class="form-select" th:field="*{curso}">
 					
 						<option th:each="curso : ${T(br.com.academy.model.enums.Curso).values()}" 
 						th:value="${curso}" th:text="${curso.descricao}"> </option> 
@@ -68,7 +68,7 @@
 					<label>Gerar Matricula:</label> <input readonly="readonly"
 						class="form-control" th:field="*{matricula}">
 					<button type="button" onclick="SubstituirMatricula();"
-						class="btnpadrao btn-dark" style="margin-top: 10px">Gerar</button>
+						class="btn btn-outline-dark" style="margin-top: 10px">Gerar</button>
 				</div>
 			</div>
 
@@ -77,7 +77,7 @@
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
 					<label>Selecione o Status:</label>
-					<select class="form-control" th:field="*{status}">
+					<select class="form-select" th:field="*{status}">
 					
 						<option th:each="status : ${T(br.com.academy.model.enums.Status).values()}" 
 						th:value="${status}" th:text="${status.descricao}"> </option> 
@@ -90,7 +90,7 @@
 			<div class="row" style="margin-top: 10px">
 				<div class="col-md-6 form-group offset-md-3">
 					<label>Selecione o Turno:</label>
-					<select class="form-control" th:field="*{turno}">
+					<select class="form-select" th:field="*{turno}">
 					
 						<option th:each="turno : ${T(br.com.academy.model.enums.Turno).values()}" 
 						th:value="${turno}" th:text="${turno.descricao}"> </option> 
@@ -115,13 +115,17 @@
 			</div>
 
 			<div class="row" style="margin-top: 10px">
-				<!-- Salvar Aluno -->
-				<button type="submit" class="btnpadrao btn-success offset-md-5">Salvar</button>
-				&nbsp&nbsp&nbsp&nbsp
-				<a th:href="@{/filtro-alunos}" class="btnpadrao btn-outline-danger" style= "text-align: center; color: black; text-decoration: none;" >Voltar</a>
+				<div class="col-md-6 form-group offset-md-3" >
+					<label>Usuário da Última Alteração</label>
+					<input readonly="readonly" name="nome" class="form-control" th:field="*{usuario.email}">
+				</div>
 			</div>
 
-
+			<div style="margin-top: 10px; text-align: center;">
+				<button type="submit" class="btn btn-outline-primary">Salvar</button>
+				<a th:href="@{/filtro-alunos}" class="btn btn-outline-info">Voltar</a>
+			</div>
+	
 		</form>
 
 	</div>

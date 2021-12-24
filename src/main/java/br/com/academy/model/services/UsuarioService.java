@@ -18,7 +18,7 @@ public class UsuarioService {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
-	public Usuario save(Usuario usuario) throws Exception{
+	public Usuario save(Usuario usuario) throws RuntimeException{
 		try {
 			
 			if(usuarioRepository.findByEmail(usuario.getEmail()) != null) {
@@ -37,7 +37,7 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 	
-	public Usuario validarLogin(String codigoUsuario, String codigoSenha) throws Exception{
+	public Usuario validarLogin(String email, String codigoSenha) throws RuntimeException{
 		
 		Usuario usuario = null;
 		String senhaCriptografada = null;
@@ -48,10 +48,10 @@ public class UsuarioService {
 			throw new CriptoExistsException("Ocorreu um erro na criptografia da senha.");
 		}
 		
-		usuario = usuarioRepository.findByLogin(codigoUsuario, senhaCriptografada);
+		usuario = usuarioRepository.findByLogin(email, senhaCriptografada);
 		
 		if(usuario == null) {
-			throw new LoginExistsException("Usuário e ou senha incorretos.");
+			throw new LoginExistsException("E-mail e ou senha incorretos.");
 		}
 		
 		return usuario;
