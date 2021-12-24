@@ -75,7 +75,7 @@ public class AlunoService {
 	}
 
 	public List<Aluno> findByNome(String nome){
-		if(nome == null || nome.isBlank() || nome.isEmpty()) {
+		if(nome == null || nome.isEmpty()) {
 			return alunoRepository.findAll();
 		}else {
 			return alunoRepository.findByNome(nome);
