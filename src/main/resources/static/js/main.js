@@ -18,3 +18,11 @@ function SubstituirMatricula() {
 		GerarMatricula();
 	}
 }
+
+
+function AlterarSenha(){
+	if(document.getElementById("codigoSenha").readOnly == true){
+		document.getElementById("codigoSenha").readOnly = false;
+		document.getElementById('btnAlterarSenha').style.display = 'none';
+	}
+}

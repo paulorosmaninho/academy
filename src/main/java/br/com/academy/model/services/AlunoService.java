@@ -33,8 +33,6 @@ public class AlunoService {
 	
 	public Aluno findById(Long id) {
 		Optional<Aluno> obj = alunoRepository.findById(id);
-//		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
-//		Tratar erro aqui
 		return obj.get();
 	}
 	

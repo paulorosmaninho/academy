@@ -4,12 +4,14 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.academy.model.entities.Usuario;
 import br.com.academy.model.services.exceptions.EmailExistsException;
 import br.com.academy.model.services.exceptions.LoginExistsException;
 
@@ -32,7 +34,7 @@ public class ResourceExceptionHandler {
 	    }
 
 	 @ExceptionHandler(EmailExistsException.class)
-	 public ModelAndView emailExistsException(EmailExistsException e, HttpServletRequest request) {
+	 public ModelAndView emailExistsException(EmailExistsException e, HttpServletRequest request, HttpSession session) {
 		 
 		 String error = "Erro no cadastro do usuário.";
 		 HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -40,9 +42,12 @@ public class ResourceExceptionHandler {
 		 
 		 ModelAndView mv = new ModelAndView();
 		 
+		 Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		 
+		 mv.addObject(usuario);
 		 mv.addObject("errCode", stdError.getStatus());
 		 mv.addObject("errMsg", stdError.getMessage());
-		 mv.setViewName("login/form-incluir-usuario");
+		 mv.setViewName("usuario/form-incluir-usuario");
 		 return mv;
 	 }
 	

@@ -19,17 +19,15 @@
 		<div class="container">
 			<div class="main-div">
 				<div class="texto-header">
-					<h2>Cadastro de Usuário</h2>
+					<h4>Cadastro de Usuário</h4>
+					<hr>
 					<p>Criar usuário no sistema</p>
 				</div>
-				<form method="post" th:object=${usuario} action="/cadastrarUsuario" autocomplete="off">
+				<form method="post" action="/cadastrarUsuario" autocomplete="off" th:object="${usuario}">
 
-					<div class="alert alert-danger" role="alert" th:if="${errMsg}">
-						<strong th:text="${errMsg}"></strong>
-					</div>
 
 					<div class="form-group">
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nome')}">
+						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('nome')}">
 							<label class="validation-message" th:errors="*{nome}"></label>
 						</div>
 						<label class="titulo">Nome do Usuário:</label>
@@ -37,25 +35,30 @@
 					</div>
 
 					<div class="form-group">
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('sobrenome')}">
+						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('sobrenome')}">
 							<label class="validation-message" th:errors="*{sobrenome}"></label>
 						</div>
 						<label class="titulo">Sobrenome do Usuário:</label>
 						<input type=text name="sobrenome" th:field="*{sobrenome}" class="form-control" placeholder="Sobrenome do usuário">
 					</div>
 
-					<div class="form-group">
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('email')}">
-							<label class="validation-message" th:errors="*{email}"></label>
-						</div>
-						<label class="titulo">E-mail</label>
-						<input type=email name="email" th:field="*{email}" class="form-control" placeholder="exemplo@email.com">
+					<div class="alert alert-warning" role="alert" th:if="${errMsg}">
+						<!-- E-mail já existe -->
+						<span th:text="${errMsg}"></span>
 					</div>
 
 					<div class="form-group">
-<!-- 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('codigoSenha')}"> -->
-<!-- 							<label class="validation-message" th:errors="*{codigoSenha}"></label> -->
-<!-- 						</div> -->
+						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('email')}">
+							<label class="validation-message" th:errors="*{email}"></label>
+						</div>
+						<label class="titulo">E-mail</label>
+						<input type=text name="email" th:field="*{email}" class="form-control" placeholder="exemplo@email.com">
+					</div>
+
+					<div class="form-group">
+						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('codigoSenha')}">
+							<label class="validation-message" th:errors="*{codigoSenha}"></label>
+						</div>
 						<label class="titulo">Senha</label>
 						<input type=password name="codigoSenha" th:field="*{codigoSenha}" class="form-control" placeholder="Crie uma senha">
 					</div>

@@ -1,6 +1,7 @@
 package br.com.academy.model.services;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,7 @@ public class UsuarioService {
 	
 	public Usuario save(Usuario usuario) throws RuntimeException{
 		try {
-			
 			if(usuarioRepository.findByEmail(usuario.getEmail()) != null) {
-				
 				throw new EmailExistsException("Este e-mail já está cadastrado: " + usuario.getEmail());
 			}
 			
@@ -57,6 +56,43 @@ public class UsuarioService {
 		return usuario;
 	}
 	
+	public Usuario findById(Long id) {
+		Optional<Usuario> obj = usuarioRepository.findById(id);
+		return obj.get();
+	}
 	
+	public Usuario update(Usuario novoUsuario) throws RuntimeException{
+
+			Usuario usuario = usuarioRepository.getById(novoUsuario.getId());
+			
+			if(novoUsuario.getCodigoSenha() == null || novoUsuario.getCodigoSenha().isEmpty()) {
+				atualizarDados(usuario, novoUsuario);
+			}else {
+				
+				try {
+					//Criptografa a senha
+					novoUsuario.setCodigoSenha(Util.md5(novoUsuario.getCodigoSenha()));
+				}catch(NoSuchAlgorithmException e) {
+					throw new CriptoExistsException("Ocorreu um erro na criptografia da senha.");
+				}
+				
+				atualizarDadosMaisSenha(usuario, novoUsuario);
+				
+			}
+			
+			return usuarioRepository.save(usuario);
+	}
+
+
+	private void atualizarDados(Usuario usuario, Usuario novoUsuario) {
+		usuario.setNome(novoUsuario.getNome());
+		usuario.setSobrenome(novoUsuario.getSobrenome());
+	}
+
+	private void atualizarDadosMaisSenha(Usuario usuario, Usuario novoUsuario) {
+		usuario.setNome(novoUsuario.getNome());
+		usuario.setSobrenome(novoUsuario.getSobrenome());
+		usuario.setCodigoSenha(novoUsuario.getCodigoSenha());
+	}
 
 }

@@ -36,11 +36,14 @@ public class Usuario {
 	@Size(min = 2, max = 80, message = "O sobrenome do usuário deve conter no mínimo 2 e máximo 80 caracteres.")
 	private String sobrenome;
 
-	@Email
+	@Email(message = "Informe um e-mail válido. Exemplo: nome@email.com.")
+	@Size(min = 7, message = "Informe um e-mail válido. Exemplo: nome@email.com.")
+	@Size(max = 255, message = "O e-mail deve conter até 255 caracteres.")
 	@Column(name = "nm_email")
 	private String email;
 
 	@Column(name = "cd_senha")
+	@Size(min = 4, max = 255, message = "A senha deve conter pelo menos 4 caracteres alfanuméricos.")
 	private String codigoSenha;
 	
 	@OneToMany(mappedBy = "usuario")
