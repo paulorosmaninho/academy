@@ -43,7 +43,6 @@ public class Usuario {
 	private String email;
 
 	@Column(name = "cd_senha")
-	@Size(min = 4, max = 255, message = "A senha deve conter pelo menos 4 caracteres alfanuméricos.")
 	private String codigoSenha;
 	
 	@OneToMany(mappedBy = "usuario")
