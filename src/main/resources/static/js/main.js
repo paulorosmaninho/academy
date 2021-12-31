@@ -26,3 +26,8 @@ function AlterarSenha(){
 		document.getElementById('btnAlterarSenha').style.display = 'none';
 	}
 }
+
+setTimeout(function() {
+	document.getElementById('msgSucesso').style.display = 'none';
+}, 9000);
+

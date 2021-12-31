@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Importando biblioteca de estilos do BootStrap -->
 <link rel="stylesheet" href="webjars/bootstrap/css/bootstrap.min.css">
-<title>Projeto de gerenciamento de alunos - Login</title>
+<title>Academy | Incluir usuário</title>
 <meta name="author" content="Paulo Rosmaninho" />
-<!-- Importando arquivo style.css -->
+<!-- Importando arquivo login.css -->
 <link rel="stylesheet" href="css/login.css">
 <!-- Importando kit de fontes awesome -->
 <script src="https://kit.fontawesome.com/006642858d.js"></script>
@@ -18,19 +18,20 @@
 	<div class="login-form">
 		<div class="container">
 			<div class="main-div">
-				<div class="texto-header">
+				<div class="label-header">
 					<h4>Cadastro de Usuário</h4>
 					<hr>
 					<p>Criar usuário no sistema</p>
 				</div>
 				<form method="post" action="/cadastrarUsuario" autocomplete="off" th:object="${usuario}">
 
-
 					<div class="form-group">
 						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('nome')}">
 							<label class="validation-message" th:errors="*{nome}"></label>
 						</div>
-						<label class="titulo">Nome do Usuário:</label>
+						<div align="left" class="label-group">
+							<label>Nome do Usuário</label>
+						</div>
 						<input type=text name="nome" th:field="*{nome}" class="form-control" placeholder="Nome do usuário">
 					</div>
 
@@ -38,7 +39,9 @@
 						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('sobrenome')}">
 							<label class="validation-message" th:errors="*{sobrenome}"></label>
 						</div>
-						<label class="titulo">Sobrenome do Usuário:</label>
+						<div align="left" class="label-group">
+							<label>Sobrenome do Usuário</label>
+						</div>
 						<input type=text name="sobrenome" th:field="*{sobrenome}" class="form-control" placeholder="Sobrenome do usuário">
 					</div>
 
@@ -51,7 +54,9 @@
 						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('email')}">
 							<label class="validation-message" th:errors="*{email}"></label>
 						</div>
-						<label class="titulo">E-mail</label>
+						<div align="left" class="label-group">
+							<label>E-mail</label>
+						</div>
 						<input type=text name="email" th:field="*{email}" class="form-control" placeholder="exemplo@email.com">
 					</div>
 
@@ -59,7 +64,9 @@
 						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('codigoSenha')}">
 							<label class="validation-message" th:errors="*{codigoSenha}"></label>
 						</div>
-						<label class="titulo">Senha</label>
+						<div align="left" class="label-group">
+							<label>Senha</label>
+						</div>
 						<input type=password name="codigoSenha" th:field="*{codigoSenha}" class="form-control" placeholder="Crie uma senha">
 					</div>
 					

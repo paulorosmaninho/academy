@@ -1,7 +1,5 @@
 package br.com.academy.repositories;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -17,6 +15,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 			+ "WHERE u.email = :email "
 			+ "AND u.codigoSenha = :codigoSenha")
 	public Usuario findByLogin(String email, String codigoSenha);
-	
-	
+
 }

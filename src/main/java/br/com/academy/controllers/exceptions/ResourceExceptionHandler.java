@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.academy.model.entities.Usuario;
 import br.com.academy.model.services.exceptions.EmailExistsException;
+import br.com.academy.model.services.exceptions.EmailNotExistsException;
+import br.com.academy.model.services.exceptions.EmailSentException;
 import br.com.academy.model.services.exceptions.LoginExistsException;
 
 @ControllerAdvice
@@ -48,6 +50,36 @@ public class ResourceExceptionHandler {
 		 mv.addObject("errCode", stdError.getStatus());
 		 mv.addObject("errMsg", stdError.getMessage());
 		 mv.setViewName("usuario/form-incluir-usuario");
+		 return mv;
+	 }
+
+	 @ExceptionHandler(EmailNotExistsException.class)
+	 public ModelAndView emailNotExistsException(EmailNotExistsException e, HttpServletRequest request) {
+		 
+		 String error = "Erro. E-mail não cadastrado.";
+		 HttpStatus status = HttpStatus.BAD_REQUEST;
+		 StandardError stdError = new StandardError(Instant.now(), LocalDateTime.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		 
+		 ModelAndView mv = new ModelAndView();
+		 
+		 mv.addObject("errCode", stdError.getStatus());
+		 mv.addObject("errMsg", stdError.getMessage());
+		 mv.setViewName("login/nova-senha");
+		 return mv;
+	 }
+
+	 @ExceptionHandler(EmailSentException.class)
+	 public ModelAndView emailSentException(EmailSentException e, HttpServletRequest request) {
+		 
+		 String error = "Erro no envio do e-mail";
+		 HttpStatus status = HttpStatus.BAD_REQUEST;
+		 StandardError stdError = new StandardError(Instant.now(), LocalDateTime.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		 
+		 ModelAndView mv = new ModelAndView();
+		 
+		 mv.addObject("errCode", stdError.getStatus());
+		 mv.addObject("errMsg", stdError.getMessage());
+		 mv.setViewName("login/nova-senha");
 		 return mv;
 	 }
 	

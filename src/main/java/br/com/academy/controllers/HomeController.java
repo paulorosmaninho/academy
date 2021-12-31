@@ -20,8 +20,8 @@ public class HomeController {
 		if(usuarioLogado == null) {
 			mv.setViewName("login/login");
 		}else {
-			mv.setViewName("home/index");
 			mv.addObject("aluno",new Aluno());
+			mv.setViewName("home/index");
 		}
 		return mv;
 	}

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.academy.model.entities.Usuario;
+import br.com.academy.model.services.EmailService;
 import br.com.academy.model.services.UsuarioService;
 
 @Controller
@@ -16,6 +17,9 @@ public class LoginController {
 
 	@Autowired
 	UsuarioService usuarioService;
+	
+	@Autowired
+	EmailService emailService;
 	
 	@GetMapping(value = "/")
 	public ModelAndView login() {
@@ -39,5 +43,40 @@ public class LoginController {
 		session.invalidate();
 		return login();
 	}
+	
+	
+	@GetMapping(value = "/novaSenha")
+	public ModelAndView novaSenha() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login/nova-senha");
+		return mv;
+	}
+
+	
+	@PostMapping(value = "/novaSenha")
+	public ModelAndView novaSenha(String email) {
+		ModelAndView mv = new ModelAndView();
+		
+		//Gerar a nova senha
+		Usuario usuario = usuarioService.novaSenha(email);
+		
+		String novaSenha = usuario.getCodigoSenha();
+		
+		//Atualizar banco de dados com a nova senha
+		usuario = usuarioService.update(usuario);
+		
+		//Define senha sem hash para enviar e-mail
+		usuario.setCodigoSenha(novaSenha);
+		
+		emailService.enviarEmail(usuario);
+		
+		String sucesso = "E-mail enviado com sucesso";
+		
+		mv.addObject("sucesso", sucesso);
+		
+		mv.setViewName("login/nova-senha");
+		return mv;
+	}
+
 
 }

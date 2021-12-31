@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Importando biblioteca de estilos do BootStrap -->
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-<title>Projeto de gerenciamento de alunos</title>
+<title>Academy | Alterar usuário</title>
 <meta name="author" content="Paulo Rosmaninho" />
 <!-- Importando arquivo style.css -->
 <link rel="stylesheet" href="/css/style.css">
@@ -31,6 +31,11 @@
 				<form method="post" action="/alterarUsuario" autocomplete="off" th:object="${usuario}" onload="OcultarDivCampoSenha()">
 					
 					<input type="hidden" name="id" th:field="*{id}">
+
+					<div id="msgSucesso" class="form-group col-md-6 form-group offset-md-3 alert alert-success" role="alert" th:if="${sucesso}">
+						<!-- Sucesso -->
+						<span th:text="${sucesso}"></span>
+					</div>
 
 					<div class="form-group col-md-6 form-group offset-md-3">
 						<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('nome')}">
@@ -77,6 +82,19 @@
 						<button type="button" onclick="AlterarSenha();"
 							class="btn btn-outline-dark" style="margin-top: 10px"
 							id="btnAlterarSenha">Alterar senha</button>
+					</div>
+					
+					<div class="form-group col-md-6 form-group offset-md-3" style="margin-top: 30px;">
+					</div>
+
+					<div class="form-group col-md-6 form-group offset-md-3">
+						<label>Data/Hora da Inclusão</label>
+						<input readonly="readonly" class="form-control"  th:value="*{#calendars.format(timeStampInclusao, 'dd/MM/yyyy HH:mm:ss.SSS')}">
+					</div>
+					
+					<div class="form-group col-md-6 form-group offset-md-3">
+						<label>Data/Hora da Última Alteração</label>
+						<input readonly="readonly" class="form-control"  th:value="*{#calendars.format(timeStampAlteracao, 'dd/MM/yyyy HH:mm:ss.SSS')}">
 					</div>
 
 					<div style="margin-top: 10px; text-align: center;">

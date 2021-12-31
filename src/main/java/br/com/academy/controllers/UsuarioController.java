@@ -79,8 +79,12 @@ public class UsuarioController {
 			else
 			{
 				usuarioService.update(usuario);
+				usuario = usuarioService.findById(usuario.getId());
 				session.setAttribute("usuarioLogado", usuario);
-				mv.setViewName("home/index");
+				String sucesso = "Alteração realizada com sucesso!";
+				mv.addObject("usuario", usuario);
+				mv.addObject("sucesso", sucesso);
+				mv.setViewName("usuario/form-alterar-usuario");
 			}
 		}		
 		
