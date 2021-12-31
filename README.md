@@ -2,9 +2,9 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/paulorosmaninho/academy)
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/paulorosmaninho/academy/blob/master/LICENSE) 
 
-# Sobre o projeto
+### Disponível no Heroku através da URL: https://academysb.herokuapp.com/
 
-https://academysb.herokuapp.com/
+# Sobre o projeto
 
 O projeto Academy é uma aplicação full stack web e mobile, construída durante o curso de Spring Boot do canal **Jamerson Souza** (https://www.youtube.com/c/JamersonTutoriais).
 
