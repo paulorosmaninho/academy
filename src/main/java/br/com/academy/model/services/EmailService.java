@@ -27,6 +27,7 @@ public class EmailService {
 	private static String ACADEMY = "Academy";
 	private static String EMAIL_REMETENTE = "paulo.rosmaninho.javaproject@gmail.com";
 	private static String ASSUNTO = "Nova senha Academy";
+	private static String URL_API = "https://emailsb.herokuapp.com/enviarEmail";
 	
 	
 	public EmailDto enviarEmail(Usuario usuario) {
@@ -53,7 +54,7 @@ public class EmailService {
 		
 		try{
 		    // Cria um objeto HttpURLConnection:
-			URL url = new URL("http://localhost:8081/enviarEmail");
+			URL url = new URL(URL_API);
 			
 			HttpURLConnection request = (HttpURLConnection)url.openConnection();
 							
