@@ -2,18 +2,22 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/paulorosmaninho/academy)
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/paulorosmaninho/academy/blob/master/LICENSE) 
 
-# Sobre o projeto
+### Disponível no Heroku através da URL: https://academysb.herokuapp.com/
 
-https://academysb.herokuapp.com/
+# Sobre o projeto
 
 O projeto Academy é uma aplicação full stack web e mobile, construída durante o curso de Spring Boot do canal **Jamerson Souza** (https://www.youtube.com/c/JamersonTutoriais).
 
 O objetivo do curso foi demonstrar conceitos do Spring Boot e Spring MVC para a construção de um CRUD com tela de login para ter acesso à aplicação.
 
-A aplicação contém um cadastro para novos usuários para permitir acesso via login. Ao acessar a aplicação será possível cadastrar, consultar, alterar e excluir alunos.
+A aplicação contém um cadastro de novos usuários para permitir acesso via login. Ao acessar a aplicação é possível cadastrar, consultar, alterar e excluir alunos.
 
 A aplicação demonstra no canto direito superior o usuário logado e durante a inclusão ou alteração faz um registro de auditoria, demonstrando, na tela de alteração, o último usuário que fez manutenção no registro.
 
+Após o curso foram incluídos:
+* Uma tela para troca de senha e também para fazer a manutenção de usuário.
+* Um módulo para usuários que esqueceram a senha. Ele gera uma nova senha e chama uma API REST para enviar o e-mail. A API de envio de e-mail também foi construída por mim.
+* O nome do usuário logado que é apresentado no canto superior direito.
 
 ## Layout web
 ![Web 1](https://github.com/paulorosmaninho/assets/blob/master/academy/login.png)
