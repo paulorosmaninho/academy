@@ -1,7 +1,7 @@
 package br.com.academy.repositories;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -46,22 +46,19 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 	
 	
 	@Query(value = "SELECT a FROM Aluno a WHERE a.status=1")
-	public List<Aluno> findByStatusAtivo();
+	public Page<Aluno> findByStatusAtivo(Pageable pageable);
 
 	@Query(value = "SELECT a FROM Aluno a WHERE a.status=2")
-	public List<Aluno> findByStatusInativo();
+	public Page<Aluno> findByStatusInativo(Pageable pageable);
 	
 	@Query(value = "SELECT a FROM Aluno a WHERE a.status=3")
-	public List<Aluno> findByStatusTrancado();
+	public Page<Aluno> findByStatusTrancado(Pageable pageable);
 	
 	@Query(value = "SELECT a FROM Aluno a WHERE a.status=4")
-	public List<Aluno> findByStatusCancelado();
-
-	@Query(value = "SELECT a FROM Aluno a WHERE a.status=0")
-	public List<Aluno> findByStatusIndefinido();
+	public Page<Aluno> findByStatusCancelado(Pageable pageable);
 
 	@Query(value = "SELECT a FROM Aluno a WHERE lower(a.nome) "
 			+ "LIKE lower(concat('%',:nome,'%')) "
 			+ "ORDER BY a.nome")
-	public List<Aluno> findByNome(String nome);
+	public Page<Aluno> findByNome(String nome, Pageable pageable);
 }

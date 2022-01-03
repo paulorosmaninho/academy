@@ -1,9 +1,10 @@
 package br.com.academy.model.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.academy.model.entities.Aluno;
@@ -26,8 +27,8 @@ public class AlunoService {
 				usuarioLogado.getId()); 
 	}
 
-	public List<Aluno> findAll(){
-		List<Aluno> alunos = alunoRepository.findAll();
+	public Page<Aluno> findAll(Pageable pageable){
+		Page<Aluno> alunos = alunoRepository.findAll(pageable);
 		return alunos; 
 	}
 	
@@ -52,32 +53,28 @@ public class AlunoService {
 		alunoRepository.deleteById(id);
 	}
 	
-	public List<Aluno> findByStatusAtivo(){
-		return alunoRepository.findByStatusAtivo();
+	public Page<Aluno> findByStatusAtivo(Pageable pageable){
+		Page<Aluno> alunos = alunoRepository.findByStatusAtivo(pageable);
+		return alunos;
 	}
 
-	public List<Aluno> findByStatusInativo(){
-		return alunoRepository.findByStatusInativo();
+	public Page<Aluno> findByStatusInativo(Pageable pageable){
+		return alunoRepository.findByStatusInativo(pageable);
 	}
 	
-	public List<Aluno> findByStatusTrancado(){
-		return alunoRepository.findByStatusTrancado();
+	public Page<Aluno> findByStatusTrancado(Pageable pageable){
+		return alunoRepository.findByStatusTrancado(pageable);
 	}
 	
-	public List<Aluno> findByStatusCancelado(){
-		return alunoRepository.findByStatusCancelado();
+	public Page<Aluno> findByStatusCancelado(Pageable pageable){
+		return alunoRepository.findByStatusCancelado(pageable);
 	}
 	
-	public List<Aluno> findByStatusIndefinido(){
-		return alunoRepository.findByStatusIndefinido();
-	}
-
-	public List<Aluno> findByNome(String nome){
+	public Page<Aluno> findByNome(String nome, Pageable pageable){
 		if(nome == null || nome.isEmpty()) {
-			return alunoRepository.findAll();
+			return alunoRepository.findAll(pageable);
 		}else {
-			return alunoRepository.findByNome(nome);
+			return alunoRepository.findByNome(nome, pageable);
 		}
 	}
-
 }

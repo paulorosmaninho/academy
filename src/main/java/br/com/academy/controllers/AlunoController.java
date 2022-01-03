@@ -4,6 +4,10 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +26,6 @@ public class AlunoController {
 	@Autowired
 	AlunoService alunoService;
 	
-	HttpSession session;
-
 	//Abre a página e instancia o objeto para receber os dados 
 	@GetMapping(value = "/cadastrarAluno")
 	public ModelAndView consultarAluno(Aluno aluno, HttpSession session) {
@@ -37,10 +39,10 @@ public class AlunoController {
 			mv.setViewName("aluno/form-incluir-aluno");
 			mv.addObject("aluno", new Aluno());
 		}
-		
 		return mv;
 	}
 
+	
 	@PostMapping(value = "/cadastrarAluno")
 	public ModelAndView cadastrarAluno(@Valid Aluno aluno, BindingResult br, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -55,28 +57,12 @@ public class AlunoController {
 				mv.addObject(aluno);
 			}else {
 				alunoService.insert(aluno, usuarioLogado);
-				mv.setViewName("redirect:/alunos-cadastrados");
+				mv.setViewName("redirect:/alunos-por-inclusao-alteracao");
 			}
 		}
-		
 		return mv;
 	}
 
-	@GetMapping(value = "/alunos-cadastrados")
-	public ModelAndView listarAlunos(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-
-		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		
-		if(usuarioLogado == null) {
-			mv.setViewName("login/login");
-		}else {
-			mv.setViewName("aluno/list-alunos");
-			mv.addObject("listaAlunos", alunoService.findAll());
-		}
-		
-		return mv;
-	}
 
 	@GetMapping(value = "/alterarAluno/{id}")
 	public ModelAndView alterarAluno(@PathVariable("id") Long id, HttpSession session) {
@@ -91,10 +77,10 @@ public class AlunoController {
 			Aluno aluno = alunoService.findById(id);
 			mv.addObject("aluno", aluno);
 		}
-		
 		return mv;
 	}
 
+	
 	@PostMapping(value = "/alterarAluno")
 	public ModelAndView alterar(@Valid Aluno aluno, BindingResult br, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -111,14 +97,13 @@ public class AlunoController {
 			else
 			{
 				alunoService.update(aluno, usuarioLogado);
-				mv.setViewName("redirect:/alunos-cadastrados");
+				mv.setViewName("redirect:/alunos-por-inclusao-alteracao");
 			}
 		}		
-		
-		
 		return mv;
 	}
 
+	
 	@GetMapping(value = "/excluirAluno/{id}")
 	public ModelAndView excluirAluno(@PathVariable("id") Long id, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -129,11 +114,11 @@ public class AlunoController {
 			mv.setViewName("login/login");
 		}else {
 			alunoService.excluir(id);
-			mv.setViewName("redirect:/alunos-cadastrados");
+			mv.setViewName("redirect:/alunos-por-inclusao-alteracao");
 		}
-		
 		return mv;
 	}
+	
 	
 	@GetMapping(value = "/filtro-alunos")
 	public ModelAndView filtroAlunos(HttpSession session) {
@@ -146,12 +131,44 @@ public class AlunoController {
 		}else {
 			mv.setViewName("aluno/filtro-alunos");
 		}
-		
 		return mv;
 	}
 
+	
+	//Definicao da paginacao
+	//10 registros por pagina. size = 10
+	//Sort pelo campo timeStampAlteracao
+	//Direcao descendente
+	@GetMapping(value = "/alunos-por-inclusao-alteracao")
+	public ModelAndView listarAlunosPorInclusaoAlteracao(@PageableDefault(size = 10, direction = Direction.DESC, sort = "timeStampAlteracao") Pageable pageable, 
+			HttpSession session) {
+		
+		ModelAndView mv = new ModelAndView();
+
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		
+		if(usuarioLogado == null) {
+			mv.setViewName("login/login");
+		}else {
+			
+			Page<Aluno> alunos = alunoService.findAll(pageable);
+			
+			mv.addObject("alunos", alunos);
+			mv.addObject("paginaAtual", pageable.getPageNumber());
+			mv.setViewName("aluno/list-alunos-inclusao-alteracao");
+		}
+		return mv;
+	}
+
+	
+	//Definicao da paginacao
+	//10 registros por pagina. size = 10
+	//Sort pelo campo nome
+	//Direcao ascendente
 	@GetMapping(value = "/alunos-ativos")
-	public ModelAndView listarAlunosAtivos(HttpSession session) {
+	public ModelAndView listarAlunosAtivos(@PageableDefault(size = 10, direction = Direction.ASC, sort = "nome") Pageable pageable, 
+			HttpSession session) {
+		
 		ModelAndView mv = new ModelAndView();
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -159,15 +176,24 @@ public class AlunoController {
 		if(usuarioLogado == null) {
 			mv.setViewName("login/login");
 		}else {
+			
+			Page<Aluno> alunos = alunoService.findByStatusAtivo(pageable);
+			
+			mv.addObject("alunos", alunos);
+			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-ativos");
-			mv.addObject("listaAlunosAtivos", alunoService.findByStatusAtivo());
 		}
-		
 		return mv;
 	}
 	
+	
+	//Definicao da paginacao
+	//10 registros por pagina. size = 10
+	//Sort pelo campo nome
+	//Direcao ascendente
 	@GetMapping(value = "/alunos-inativos")
-	public ModelAndView listarAlunosInativos(HttpSession session) {
+	public ModelAndView listarAlunosInativos(@PageableDefault(size = 10, direction = Direction.ASC, sort = "nome") Pageable pageable, 
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -175,15 +201,23 @@ public class AlunoController {
 		if(usuarioLogado == null) {
 			mv.setViewName("login/login");
 		}else {
+			Page<Aluno> alunos = alunoService.findByStatusInativo(pageable);
+			
+			mv.addObject("alunos", alunos);
+			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-inativos");
-			mv.addObject("listaAlunosInativos", alunoService.findByStatusInativo());
 		}
-		
 		return mv;
 	}
+
 	
+	//Definicao da paginacao
+	//10 registros por pagina. size = 10
+	//Sort pelo campo nome
+	//Direcao ascendente
 	@GetMapping(value = "/alunos-trancados")
-	public ModelAndView listarAlunosTrancados(HttpSession session) {
+	public ModelAndView listarAlunosTrancados(@PageableDefault(size = 10, direction = Direction.ASC, sort = "nome") Pageable pageable, 
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -191,15 +225,24 @@ public class AlunoController {
 		if(usuarioLogado == null) {
 			mv.setViewName("login/login");
 		}else {
+			
+			Page<Aluno> alunos = alunoService.findByStatusTrancado(pageable);
+			
+			mv.addObject("alunos", alunos);
+			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-trancados");
-			mv.addObject("listaAlunosTrancados", alunoService.findByStatusTrancado());
 		}
-		
 		return mv;
 	}
 	
+	
+	//Definicao da paginacao
+	//10 registros por pagina. size = 10
+	//Sort pelo campo nome
+	//Direcao ascendente
 	@GetMapping(value = "/alunos-cancelados")
-	public ModelAndView listarAlunosCancelados(HttpSession session) {
+	public ModelAndView listarAlunosCancelados(@PageableDefault(size = 10, direction = Direction.ASC, sort = "nome") Pageable pageable, 
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -207,15 +250,22 @@ public class AlunoController {
 		if(usuarioLogado == null) {
 			mv.setViewName("login/login");
 		}else {
+			
+			Page<Aluno> alunos = alunoService.findByStatusCancelado(pageable);
+			
+			mv.addObject("alunos", alunos);
+			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-cancelados");
-			mv.addObject("listaAlunosCancelados", alunoService.findByStatusCancelado());
 		}
-		
 		return mv;
 	}
 
-	@GetMapping(value = "/alunos-indefinidos")
-	public ModelAndView listarAlunosIndefinidos(HttpSession session) {
+
+	@GetMapping(value = "/alunos-por-nome")
+	public ModelAndView listarAlunosPorNome(@RequestParam(required = false) String nome, 
+			@PageableDefault(size = 10, direction = Direction.ASC, sort = "nome") Pageable pageable, 
+			HttpSession session) {
+		
 		ModelAndView mv = new ModelAndView();
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -223,27 +273,14 @@ public class AlunoController {
 		if(usuarioLogado == null) {
 			mv.setViewName("login/login");
 		}else {
-			mv.setViewName("aluno/list-alunos-indefinidos");
-			mv.addObject("listaAlunosIndefinidos", alunoService.findByStatusIndefinido());
-		}
-		
-		return mv;
-	}
 
-	@PostMapping(value = "/alunos-por-nome")
-	public ModelAndView listarAlunosPorNome(@RequestParam(required = false) String nome, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		
-		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		
-		if(usuarioLogado == null) {
-			mv.setViewName("login/login");
-		}else {
+			Page<Aluno> alunos = alunoService.findByNome(nome, pageable);
+			
+			mv.addObject("nome", nome);
+			mv.addObject("alunos", alunos);
+			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-por-nome");
-			mv.addObject("listaAlunosPorNome", alunoService.findByNome(nome));
 		}
-		
 		return mv;
 	}
-
 }

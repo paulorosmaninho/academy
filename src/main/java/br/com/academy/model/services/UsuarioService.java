@@ -116,7 +116,6 @@ public class UsuarioService {
 		//Gerar nova senha para o usuario com 12 caracteres
 		novaSenha = hashNovaSenha.substring(0, 12);
 
-		System.out.println("Nova senha: " + novaSenha);
 		
 		//Define nova senha para o usuario
 		usuario.setCodigoSenha(novaSenha);

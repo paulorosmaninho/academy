@@ -10,7 +10,7 @@
 <meta name="author" content="Paulo Rosmaninho" />
 
 <!-- Importando arquivo style.css -->
-<link rel="stylesheet" href="/css/style.css">
+<!-- <link rel="stylesheet" href="/css/style.css"> -->
 
 <!-- Importando kit de fontes awesome -->
 <script src="https://kit.fontawesome.com/006642858d.js"></script>
@@ -21,26 +21,31 @@
 <body>
 
 <!-- Cabeçalho -->
+
 	<header th:fragment="cabecalho">
 		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#4527A0;">
-			<a class="navbar-brand" th:href="@{/index}"> 
-				<img src="/img/logo-header-site.png" width="200px"/>
-			</a>
-
-			<!-- Definindo menu de hamburguer -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div id="navMobile" class="navbar-collapse collapse justify-content-center">
-				<a class="btn-nav nav-item nav-link" th:href="@{/index}"><i class="fas fa-home"></i> Home</a> 
-				<a class="btn-nav nav-item nav-link" th:href="@{/cadastrarAluno}"><i class="fas fa-user-graduate"></i> Cadastrar Aluno</a> 
-				<a class="btn-nav nav-item nav-link" th:href="@{/filtro-alunos}"><i class="fas fa-search"></i> Pesquisar Aluno</a>
-				<a class="btn-nav nav-item nav-link" th:href="@{/alterarUsuario/{id}(id=${session.usuarioLogado.id})}"><i class="fas fa-user"></i> Meus Dados</a>
-				<form method="post" id="form-sair" action="/logout">
-					<a href="javascript:{}" onclick="document.getElementById('form-sair').submit();" class="btn-nav nav-item nav-link"><i class="fas fa-times"></i> Sair</a>
-				</form>
-				<span class="nav-item"><strong>&nbsp | &nbsp Usuário:&nbsp</strong></span><span class="nav-item" th:text= "${session.usuarioLogado.nome}"></span>
+		    <div class="container">
+				<a class="navbar-brand" th:href="@{/index}"> 
+					<img src="/img/logo-header-site.png" width="200px"/>
+				</a>
+	
+				<!-- Definindo menu de hamburguer -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile"
+	                aria-controls="navbarResponsive"
+	                aria-expanded="false" aria-label="Toggle navigation">
+	            	<span class="navbar-toggler-icon"></span>
+	        	</button>
+	
+				<div id="navMobile" class="collapse navbar-collapse justify-content-center">
+					<a class="btn-nav nav-item nav-link" th:href="@{/index}"><i class="fas fa-home"></i> Home</a> 
+					<a class="btn-nav nav-item nav-link" th:href="@{/cadastrarAluno}"><i class="fas fa-user-graduate"></i> Cadastrar Aluno</a> 
+					<a class="btn-nav nav-item nav-link" th:href="@{/filtro-alunos}"><i class="fas fa-search"></i> Pesquisar Aluno</a>
+					<a class="btn-nav nav-item nav-link" th:href="@{/alterarUsuario/{id}(id=${session.usuarioLogado.id})}"><i class="fas fa-user"></i> Meus Dados</a>
+					<form method="post" id="form-sair" action="/logout">
+						<a href="javascript:{}" onclick="document.getElementById('form-sair').submit();" class="btn-nav nav-item nav-link"><i class="fas fa-times"></i> Sair</a>
+					</form>
+					<span class="nav-item"><strong>&nbsp | &nbsp Usuário:&nbsp</strong></span><span class="nav-item" th:text= "${session.usuarioLogado.nome}"></span>
+				</div>
 			</div>
 		</nav>
 	</header>

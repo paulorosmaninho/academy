@@ -25,27 +25,31 @@
 
 	<div class="container" style="margin-top: 50px;">
 
-		<h3>Últimos alunos Adicionados</h3>
+		<h3>Últimos alunos adicionados / alterados</h3>
 		<hr>
 		<table class="table table-bordered table rover">
 			<thead>
+			<tr>
 				<th scope="col">Código</th>
 				<th scope="col">Nome</th>
 				<th scope="col">Curso</th>
 				<th scope="col">Matrícula</th>
 				<th scope="col">Status</th>
 				<th scope="col">Turno</th>
-				<th scope="col">Editar</th>
-				<th scope="col">Excluir</th>
+				<th scope="col">Inclusão / Alteração</th>
+				<th scope="col" class="text-center">Editar</th>
+				<th scope="col" class="text-center">Excluir</th>
+			</tr>
 			</thead>
 			<tbody>
-				<tr scope="row" th:each="aluno : ${listaAlunos}">
+				<tr scope="row" th:each="aluno : ${alunos}">
 					<td th:text="${aluno.id}"></td>
 					<td th:text="${aluno.nome}"></td>
 					<td th:text="${aluno.curso.descricao}"></td>
 					<td th:text="${aluno.matricula}"></td>
 					<td th:text="${aluno.status.descricao}"></td>
 					<td th:text="${aluno.turno.descricao}"></td>
+					<td th:text="${#calendars.format(aluno.timeStampAlteracao, 'dd/MM/yyyy HH:mm:ss')}"></td>
 					<td align="center">
 						<a data-toggle="tooltip" title="Editar" th:href="@{alterarAluno/{id}(id=${aluno.id})}">
 							<i class="fas fa-edit"></i></a>
@@ -58,7 +62,26 @@
 			</tbody>
 		</table>
 	</div>
+	<!-- Paginação -->
+	<div align="center" style="margin-top: 30px;" class="d-flex justify-content-center">
+		<nav aria-label="...">
+			<ul class="pagination pagination-sm">
+			
+				<li class="page-item" th:classappend="${alunos.hasPrevious()} ? '' : 'disabled'">
+					<a class="page-link" th:href="@{/alunos-por-inclusao-alteracao(page=${alunos.number-1}, size=${alunos.size})}" tabindex="-1">Anterior</a>
+				</li>
 
+				<li class="page-item" th:each="i : ${#numbers.sequence(0,alunos.totalPages -1)}" th:classappend="${paginaAtual}==${i} ? 'active' : ''">
+						<a class="page-link" th:href="@{/alunos-por-inclusao-alteracao(page=${i}, size=${alunos.size})}" 
+						th:text="${i} + 1" th:classappend="${i} < 0 ? 'd-none' : ''"></a>
+				</li>
+				
+				<li class="page-item" th:classappend="${alunos.hasNext()} ? '' : 'disabled'">
+					<a class="page-link" th:href="@{/alunos-por-inclusao-alteracao(page=${alunos.number+1}, size=${alunos.size})}" tabindex="-1">Próximo</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
 
 	<div th:replace="fragmentos/fragmentos :: rodape"></div>
 
