@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Importando biblioteca de estilos do BootStrap -->
-<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <title>Academy | Alunos</title>
 <meta name="author" content="Paulo Rosmaninho" />
@@ -44,7 +45,7 @@
 					<form method="post" id="form-sair" action="/logout">
 						<a href="javascript:{}" onclick="document.getElementById('form-sair').submit();" class="btn-nav nav-item nav-link"><i class="fas fa-times"></i> Sair</a>
 					</form>
-					<span class="nav-item"><strong>&nbsp | &nbsp Usuário:&nbsp</strong></span><span class="nav-item" th:text= "${session.usuarioLogado.nome}"></span>
+					<span class="nav-item">&nbsp | &nbsp Usuário:&nbsp</span><span class="nav-item" th:text= "${session.usuarioLogado.nome}"></span>
 				</div>
 			</div>
 		</nav>
@@ -62,6 +63,9 @@
 
 	<!-- Importando biblioteca de JavaScript BootStrap -->
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 
 </body>

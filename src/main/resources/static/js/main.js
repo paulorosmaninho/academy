@@ -27,6 +27,8 @@ function AlterarSenha(){
 	}
 }
 
+
+
 setTimeout(function() {
 	document.getElementById('msgSucesso').style.display = 'none';
 }, 9000);

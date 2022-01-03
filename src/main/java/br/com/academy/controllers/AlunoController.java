@@ -104,8 +104,12 @@ public class AlunoController {
 	}
 
 	
-	@GetMapping(value = "/excluirAluno/{id}")
-	public ModelAndView excluirAluno(@PathVariable("id") Long id, HttpSession session) {
+	@GetMapping(value = "/excluirAluno")
+	public ModelAndView excluirAluno(
+			@RequestParam(name = "id") Long id, 
+			@RequestParam(name = "uri") String uri, 
+			HttpSession session) {
+		
 		ModelAndView mv = new ModelAndView();
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -114,7 +118,14 @@ public class AlunoController {
 			mv.setViewName("login/login");
 		}else {
 			alunoService.excluir(id);
-			mv.setViewName("redirect:/alunos-por-inclusao-alteracao");
+			
+			String uriPadrao = "alunos-por-inclusao-alteracao";
+			
+			if(uri.isEmpty() || uri == null) {
+				uri = uriPadrao;
+			}
+			
+			mv.setViewName("redirect:/" + uri);
 		}
 		return mv;
 	}
@@ -179,6 +190,7 @@ public class AlunoController {
 			
 			Page<Aluno> alunos = alunoService.findByStatusAtivo(pageable);
 			
+			mv.addObject("uri", "alunos-ativos");
 			mv.addObject("alunos", alunos);
 			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-ativos");
@@ -203,6 +215,7 @@ public class AlunoController {
 		}else {
 			Page<Aluno> alunos = alunoService.findByStatusInativo(pageable);
 			
+			mv.addObject("uri", "alunos-inativos");
 			mv.addObject("alunos", alunos);
 			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-inativos");
@@ -228,6 +241,7 @@ public class AlunoController {
 			
 			Page<Aluno> alunos = alunoService.findByStatusTrancado(pageable);
 			
+			mv.addObject("uri", "alunos-trancados");
 			mv.addObject("alunos", alunos);
 			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-trancados");
@@ -253,6 +267,7 @@ public class AlunoController {
 			
 			Page<Aluno> alunos = alunoService.findByStatusCancelado(pageable);
 			
+			mv.addObject("uri", "alunos-cancelados");
 			mv.addObject("alunos", alunos);
 			mv.addObject("paginaAtual", pageable.getPageNumber());
 			mv.setViewName("aluno/list-alunos-cancelados");
@@ -276,6 +291,7 @@ public class AlunoController {
 
 			Page<Aluno> alunos = alunoService.findByNome(nome, pageable);
 			
+			mv.addObject("uri", "alunos-por-nome");
 			mv.addObject("nome", nome);
 			mv.addObject("alunos", alunos);
 			mv.addObject("paginaAtual", pageable.getPageNumber());

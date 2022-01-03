@@ -1,7 +1,7 @@
 @charset "UTF-8";
 *{margin: 0; padding: 0; box-sizing: border-box;}
 nav{height: 90px; color: #ffffff;}
-a{cursor:pointer; font-weight:bold; text-decoration:none;}
+a{cursor:pointer;  text-decoration:none;}
 a.btn-nav:hover{color: #BA68C8;}
 .nav-item{color: #ffffff; text-transform: uppercase;}
 .neo-section{
