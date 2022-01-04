@@ -19,15 +19,14 @@
 <!-- Importando kit de fontes do google -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
 </head>
-<title>Lista de Alunos por Nome</title>
-</head>
-<body>
+<body id="fundo-interno">
 	<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
 
-	<div class="container" style="margin-top: 50px;">
-
-		<h3>Lista de Alunos por Nome</h3>
-		<hr>
+	<div class="container" style="margin-top: 30px; margin-bottom: 10px;">
+		<div class="texto-header">
+			<h4>Lista de alunos por nome</h4>
+			<hr>
+		</div>
 		<table class="table table-bordered table rover">
 			<thead>
 				<tr>
@@ -54,6 +53,7 @@
 							<i class="fas fa-edit"></i></a>
 					</td>
 					<td align="center">
+					<a data-toggle="modal" th:attr="data-target='#remover'+${aluno.id}"><i class="fas fa-times" style="color:red"></i></a>
 					<!-- Inicio Modal -->
 					<div class="modal fade" th:attr="id='remover'+${aluno.id}" tabindex="-1" role="dialog" aria-labelledby="recordDeleteModalLabel" aria-hidden="true">>
 		                <div class="modal-dialog" role="document">

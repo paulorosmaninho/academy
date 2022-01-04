@@ -1,7 +1,5 @@
 package br.com.academy.model.dtos;
 
-import org.springframework.data.repository.NoRepositoryBean;
-
 public class EmailDto {
 	
 	private String nomeRemetente;

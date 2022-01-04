@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Importando biblioteca de estilos do BootStrap -->
-<link rel="stylesheet" href="webjars/bootstrap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
 <title>Academy | Login</title>
 <meta name="author" content="Paulo Rosmaninho" />
 <!-- Importando arquivo login.css -->
@@ -14,50 +16,63 @@
 <!-- Importando kit de fontes do google -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
 </head>
-<body>
-	<div class="login-form">
-		<div class="container">
-			<div class="main-div">
-				<div class="texto-header">
-					<h2 class="label-header">LOGIN</h2>
+<body id="fundo">
+	<div class="card" id="telas">
+		<div class="card-body">
+		
+				<div class="texto-header" align="center">
+					<h2 class="label-header">Academy | Login</h2>
 					<hr>
-					<p class="label-header">Insira e-mail e senha para ter acesso ao sistema</p>
 				</div>
+		
 				<form method="post" action="/login" autocomplete="off" th:object="${usuario}">
+					
 					
 					<div class="alert alert-danger" role="alert" th:if="${errMsg}">
 						<span th:text="${errMsg}"></span>
 					</div>
 					
-					<div align="left" class="label-group" style="margin-top: 40px;">
-						<label>E-mail</label>
-					</div>
-					<div>
-						<input type=text name="email" class="form-control" placeholder="E-mail">
+					<div class="form-group">
+						<div align="left" class="label-group">
+							<label>E-mail</label>
+						</div>
+						<div>
+							<input type=text name="email" class="form-control" aria-describedby="emailHelp" placeholder="Informe seu e-mail">
+						</div>
 					</div>
 
-					<div align="left" class="label-group" style="margin-top: 20px;">
-						<label>Senha</label>
-					</div>
-					<div>
-						<input type=password name="codigoSenha" class="form-control" placeholder="Senha">
+					<div class="form-group">
+						<div align="left" class="label-group">
+							<label>Senha</label>
+						</div>
+						<div>
+							<input type=password name="codigoSenha" class="form-control" placeholder="Insira sua senha">
+						</div>
 					</div>
 					
-					<div style="margin-top: 20px;">
-						<button type="submit" class="btn-login btn btn-primary btn-lg btn-block">Entrar</button>
+					<div>
+						<button type="submit" class="btn-login btn btn-success btn-lg btn-block">Entrar</button>
 					</div>
 	
-					<div style="margin-top: 30px;" class="badge badge-dark">
-						<p><a th:href="@{cadastrarUsuario}" >Novo por aqui? Cadastre-se.</a></p>
+					<div style="margin-top: 30px;">
+						<hr>
+					</div>
+					
+					<div align="center" >
+						<p><a class="badge badge-light" th:href="@{cadastrarUsuario}" >Novo por aqui? Cadastre-se.</a></p>
 					</div>
 
-					<div class="badge badge-dark">
-						<p><a th:href="@{novaSenha}">Esqueceu a senha? Clique aqui.</a></p>
+					<div align="center">
+						<p><a class="badge badge-light" th:href="@{novaSenha}">Esqueceu a senha? Clique aqui.</a></p>
 					</div>
 
 				</form>
-			</div>
 		</div>
 	</div>
+	<!-- Importando biblioteca de JavaScript BootStrap -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 </body>
 </html>
