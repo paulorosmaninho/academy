@@ -15,6 +15,9 @@ import br.com.academy.model.services.UsuarioService;
 @Controller
 public class LoginController {
 
+	private static final String NOVA_SENHA_ACADEMY = "Nova senha Academy";
+	private static final String EMAIL_ENVIADO_COM_SUCESSO = "E-mail enviado com sucesso";
+	
 	@Autowired
 	UsuarioService usuarioService;
 	
@@ -68,15 +71,14 @@ public class LoginController {
 		//Define senha sem hash para enviar e-mail
 		usuario.setCodigoSenha(novaSenha);
 		
-		emailService.enviarEmail(usuario);
-		
-		String sucesso = "E-mail enviado com sucesso";
-		
+		//Enviar e-mail para o usuario
+		String assunto = NOVA_SENHA_ACADEMY;
+		emailService.enviarEmail(usuario, assunto);
+
+		//Retorna para a pagina
+		String sucesso = EMAIL_ENVIADO_COM_SUCESSO;
 		mv.addObject("sucesso", sucesso);
-		
 		mv.setViewName("login/nova-senha");
 		return mv;
 	}
-
-
 }

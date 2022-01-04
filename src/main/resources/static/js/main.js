@@ -1,3 +1,15 @@
+function MostrarBarraProgresso(el) {
+//    document.getElementById(el).style.display = 'flex';
+
+  var display = document.getElementById(el).style.display;
+  if (display == "none"){
+    document.getElementById(el).style.display = 'flex';
+  }else{
+    document.getElementById(el).style.display = 'none';
+  }
+}
+
+
 function GerarMatricula() {
 
 	var txt = "ACA";
@@ -7,29 +19,10 @@ function GerarMatricula() {
 
 }
 
-function SubstituirMatricula() {
-
-	if (document.getElementById('matricula').value != "") {
-		if (window.confirm("A matrícula já está preeenchida. Deseja substituir?")) {
-			GerarMatricula();
-		}
-	}
-	else {
-		GerarMatricula();
-	}
-}
-
-
-function AlterarSenha(){
+function MostrarBotaoAlterarSenha(){
 	if(document.getElementById("codigoSenha").readOnly == true){
 		document.getElementById("codigoSenha").readOnly = false;
 		document.getElementById('btnAlterarSenha').style.display = 'none';
 	}
 }
-
-
-
-setTimeout(function() {
-	document.getElementById('msgSucesso').style.display = 'none';
-}, 9000);
 

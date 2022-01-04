@@ -26,11 +26,10 @@ public class EmailService {
 	private static Logger logger = LoggerFactory.getLogger(EmailService.class);
 	private static String ACADEMY = "Academy";
 	private static String EMAIL_REMETENTE = "paulo.rosmaninho.javaproject@gmail.com";
-	private static String ASSUNTO = "Nova senha Academy";
 	private static String URL_API = "https://emailsb.herokuapp.com/enviarEmail";
 	
 	
-	public EmailDto enviarEmail(Usuario usuario) {
+	public EmailDto enviarEmail(Usuario usuario, String assunto) {
 		
 		EmailDto email = new EmailDto();
 		
@@ -38,13 +37,26 @@ public class EmailService {
 		email.setEmailRemetente(EMAIL_REMETENTE);
 		email.setNomeDestinatario(usuario.getNome());
 		email.setEmailsDestinatario(usuario.getEmail());
-		email.setAssuntoEmail(ASSUNTO);
-		email.setTextoEmail(EmailLayout.montarTextoEmail(email, usuario));
+		email.setAssuntoEmail(assunto);
+		
+		switch (assunto) {
+		case "Nova senha Academy":
+			email.setTextoEmail(EmailLayout.montarEmailNovaSenha(email, usuario));
+			break;
+
+		case "Boas Vindas ao Academy":
+			email.setTextoEmail(EmailLayout.montarEmailBoasVindas(email, usuario));
+			break;
+
+		case "Alteracao de senha no Academy":
+			email.setTextoEmail(EmailLayout.montarEmailAlteracaoSenha(email, usuario));
+			break;
+		}
 		
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		
 		String json = prettyGson.toJson(email);
-
+		
 		chamarApiEmail(json);
 		
 		return email;
