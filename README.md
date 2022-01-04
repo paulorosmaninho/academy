@@ -14,17 +14,36 @@ A aplicação contém um cadastro de novos usuários para permitir acesso via lo
 
 A aplicação demonstra no canto direito superior o usuário logado e durante a inclusão ou alteração faz um registro de auditoria, demonstrando, na tela de alteração, o último usuário que fez manutenção no registro.
 
-Após o curso foram incluídos:
-* Uma tela para troca de senha e também para fazer a manutenção de usuário.
-* Um módulo para usuários que esqueceram a senha. Ele gera uma nova senha e chama uma API REST para enviar o e-mail. A API de envio de e-mail também foi construída por mim.
-* O nome do usuário logado que é apresentado no canto superior direito.
+## Novos recursos implementados após o curso:
+* Envio de e-mail de boas vindas após o cadastro do usuário.
+* Um módulo para recuperação de senha de usuário. Esse módulo gera uma nova senha e envia um e-mail ao usuário.
+* Uma tela para fazer a manutenção do usuário e trocar de senha. O sistema também envia um e-mail ao usuário informando que a senha foi trocada.
+* Paginação em todas as telas que possuem listas.
+* Inclusão de Modal com mensagens padronizadas de confirmação de ação.
+* Apresentação do nome do usuário logado que é apresentado no canto superior direito.
 
-## Layout web
+## Layout responsivo para web e mobile
+
+### Tela de Login
 ![Web 1](https://github.com/paulorosmaninho/assets/blob/master/academy/login.png)
-![Web 2](https://github.com/paulorosmaninho/assets/blob/master/academy/home.png)
-![Web 3](https://github.com/paulorosmaninho/assets/blob/master/academy/cadastro-aluno.png)
-![Web 4](https://github.com/paulorosmaninho/assets/blob/master/academy/filtro-aluno.png)
-![Web 5](https://github.com/paulorosmaninho/assets/blob/master/academy/alterar-aluno.png)
+
+### Menu responsivo para mobile
+![Web 2](https://github.com/paulorosmaninho/assets/blob/master/academy/menu-mobile-responsivo.png)
+
+### Home
+![Web 3](https://github.com/paulorosmaninho/assets/blob/master/academy/home.png)
+
+### Tela de cadastro do aluno
+![Web 4](https://github.com/paulorosmaninho/assets/blob/master/academy/cadastro-aluno.png)
+
+### Filtro de alunos
+![Web 5](https://github.com/paulorosmaninho/assets/blob/master/academy/filtro-aluno.png)
+
+### Lista de alunos ativos paginada
+![Web 6](https://github.com/paulorosmaninho/assets/blob/master/academy/pesquisa-alunos-ativos.png)
+
+### Tela de alteração de aluno
+![Web 7](https://github.com/paulorosmaninho/assets/blob/master/academy/alterar-aluno.png)
 
 # Tecnologias utilizadas
 ## Back end
