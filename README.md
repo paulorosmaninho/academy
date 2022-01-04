@@ -14,7 +14,7 @@ A aplicação contém um cadastro de novos usuários para permitir acesso via lo
 
 A aplicação demonstra no canto direito superior o usuário logado e durante a inclusão ou alteração faz um registro de auditoria, demonstrando, na tela de alteração, o último usuário que fez manutenção no registro.
 
-Novos recursos implementados após o curso:
+## Novos recursos implementados após o curso:
 * Envio de e-mail de boas vindas após o cadastro do usuário.
 * Um módulo para recuperação de senha de usuário. Esse módulo gera uma nova senha e envia um e-mail ao usuário.
 * Uma tela para fazer a manutenção do usuário e trocar de senha. O sistema também envia um e-mail ao usuário informando que a senha foi trocada.
