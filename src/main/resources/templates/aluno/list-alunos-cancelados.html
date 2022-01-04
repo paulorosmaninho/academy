@@ -51,7 +51,7 @@
 					<td th:text="${aluno.status.descricao}"></td>
 					<td th:text="${aluno.turno.descricao}"></td>
 					<td align="center">
-						<a data-toggle="tooltip" title="Editar" th:href="@{alterarAluno/{id}(id=${aluno.id})}">
+						<a th:href="@{alterarAluno/{id}(id=${aluno.id})}">
 							<i class="fas fa-edit"></i></a>
 					</td>
 					<td align="center">
