@@ -41,7 +41,7 @@ public class UsuarioController {
 
 
 	@PostMapping(value = "/cadastrarUsuario")
-	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult br, HttpSession session) throws Exception {
+	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult br, HttpSession session){
 		ModelAndView mv = new ModelAndView();
 		
 		if(br.hasErrors()) {
@@ -85,7 +85,7 @@ public class UsuarioController {
 
 	
 	@PostMapping(value = "/alterarUsuario")
-	public ModelAndView alterarUsuario(@Valid Usuario usuario, BindingResult br, HttpSession session) throws Exception{
+	public ModelAndView alterarUsuario(@Valid Usuario usuario, BindingResult br, HttpSession session){
 		ModelAndView mv = new ModelAndView();
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		

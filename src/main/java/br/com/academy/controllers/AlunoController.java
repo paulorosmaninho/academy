@@ -106,8 +106,8 @@ public class AlunoController {
 	
 	@GetMapping(value = "/excluirAluno")
 	public ModelAndView excluirAluno(
-			@RequestParam(name = "id") Long id, 
-			@RequestParam(name = "uri") String uri, 
+			@RequestParam(name = "id", required = true) Long id, 
+			@RequestParam(name = "uri", required = true) String uri, 
 			HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();

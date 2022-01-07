@@ -32,7 +32,7 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/login")
-	public ModelAndView login(String email, String codigoSenha, HttpSession session) throws Exception {
+	public ModelAndView login(String email, String codigoSenha, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Usuario usuario = usuarioService.validarLogin(email, codigoSenha);
 		session.setAttribute("usuarioLogado", usuario);

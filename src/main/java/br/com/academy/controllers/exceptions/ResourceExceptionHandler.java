@@ -16,6 +16,8 @@ import br.com.academy.model.services.exceptions.EmailExistsException;
 import br.com.academy.model.services.exceptions.EmailNotExistsException;
 import br.com.academy.model.services.exceptions.EmailSentException;
 import br.com.academy.model.services.exceptions.LoginExistsException;
+import br.com.academy.model.services.exceptions.SenhaIncompletaExceptionAlteracao;
+import br.com.academy.model.services.exceptions.SenhaIncompletaExceptionInclusao;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
@@ -82,6 +84,40 @@ public class ResourceExceptionHandler {
 		 mv.setViewName("login/nova-senha");
 		 return mv;
 	 }
-	
-	
+
+	 @ExceptionHandler(SenhaIncompletaExceptionInclusao.class)
+	 public ModelAndView senhaIncompletaExceptionInclusao(SenhaIncompletaExceptionInclusao e, HttpServletRequest request, HttpSession session) {
+		 
+		 String error = "Senha com menos de 8 caracteres.";
+		 HttpStatus status = HttpStatus.BAD_REQUEST;
+		 StandardError stdError = new StandardError(Instant.now(), LocalDateTime.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		 
+		 ModelAndView mv = new ModelAndView();
+		 
+		 Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		 
+		 mv.addObject(usuario);
+		 mv.addObject("errCode", stdError.getStatus());
+		 mv.addObject("errMsgSenha", stdError.getMessage());
+		 mv.setViewName("usuario/form-incluir-usuario");
+		 return mv;
+	 }
+
+	 @ExceptionHandler(SenhaIncompletaExceptionAlteracao.class)
+	 public ModelAndView senhaIncompletaExceptionAlteracao(SenhaIncompletaExceptionAlteracao e, HttpServletRequest request, HttpSession session) {
+		 
+		 String error = "Senha com menos de 8 caracteres.";
+		 HttpStatus status = HttpStatus.BAD_REQUEST;
+		 StandardError stdError = new StandardError(Instant.now(), LocalDateTime.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		 
+		 ModelAndView mv = new ModelAndView();
+		 
+		 Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		 
+		 mv.addObject(usuario);
+		 mv.addObject("errCode", stdError.getStatus());
+		 mv.addObject("errMsgSenha", stdError.getMessage());
+		 mv.setViewName("usuario/form-alterar-usuario");
+		 return mv;
+	 }
 }

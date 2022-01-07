@@ -11,6 +11,8 @@ import br.com.academy.model.services.exceptions.CriptoExistsException;
 import br.com.academy.model.services.exceptions.EmailExistsException;
 import br.com.academy.model.services.exceptions.EmailNotExistsException;
 import br.com.academy.model.services.exceptions.LoginExistsException;
+import br.com.academy.model.services.exceptions.SenhaIncompletaExceptionAlteracao;
+import br.com.academy.model.services.exceptions.SenhaIncompletaExceptionInclusao;
 import br.com.academy.repositories.UsuarioRepository;
 import br.com.util.Util;
 
@@ -24,6 +26,10 @@ public class UsuarioService {
 		try {
 			if(usuarioRepository.findByEmail(usuario.getEmail()) != null) {
 				throw new EmailExistsException("Este e-mail já está cadastrado: " + usuario.getEmail());
+			}
+			
+			if(usuario.getCodigoSenha().length() < 8) {
+				throw new SenhaIncompletaExceptionInclusao("A senha deve conter pelo menos 8 caracteres alfanuméricos.");
 			}
 			
 			//Criptografa a senha
@@ -69,11 +75,17 @@ public class UsuarioService {
 
 			Usuario usuario = usuarioRepository.getById(novoUsuario.getId());
 			
+			//Alteracao dos dados do usuario sem o campo senha
 			if(novoUsuario.getCodigoSenha() == null || novoUsuario.getCodigoSenha().isEmpty()) {
 
 				atualizarDados(usuario, novoUsuario);
 				
-			}else {
+			}else{
+				
+				//Alteracao dos dados do usuario com o campo senha				
+				if(novoUsuario.getCodigoSenha().length() < 8) {
+					throw new SenhaIncompletaExceptionAlteracao("A senha deve conter pelo menos 8 caracteres alfanuméricos.");
+				}
 				
 				try {
 					//Criptografa a senha
