@@ -24,7 +24,7 @@ public class EmailLayout {
 		sbTextoEmail.append("<!DOCTYPE html>");
 		sbTextoEmail.append("<html lang=\"pt-br\">");
 		sbTextoEmail.append("<head>");
-		sbTextoEmail.append("<meta charset=\"UTF-8\">");
+		sbTextoEmail.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 		sbTextoEmail.append("</head>");
 		
 		//Abrir body e table
@@ -92,9 +92,8 @@ public class EmailLayout {
 		sbTextoEmail.append("<!DOCTYPE html>");
 		sbTextoEmail.append("<html lang=\"pt-br\">");
 		sbTextoEmail.append("<head>");
-		sbTextoEmail.append("<meta charset=\"UTF-8\">");
+		sbTextoEmail.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 		sbTextoEmail.append("</head>");
-
 		
 		//Abrir body e table
 		sbTextoEmail.append("<body>");
@@ -164,7 +163,7 @@ public class EmailLayout {
 		sbTextoEmail.append("<!DOCTYPE html>");
 		sbTextoEmail.append("<html lang=\"pt-br\">");
 		sbTextoEmail.append("<head>");
-		sbTextoEmail.append("<meta charset=\"UTF-8\">");
+		sbTextoEmail.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 		sbTextoEmail.append("</head>");
 
 		
